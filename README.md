@@ -1,6 +1,5 @@
-# Winform-Simple-Starter
-The project support:
-== Done ==
+# Quản Lý Khách Sạn
+## Done
 - Login
 - DTO
 - Main Form
