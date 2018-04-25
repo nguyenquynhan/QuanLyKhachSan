@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLKS.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ namespace QLKS
 {
     static class Program
     {
-        static ApplicationContext MainContext = new ApplicationContext();
+        public static NguoiDung CurrentUser { get; set; }
 
         /// <summary>
         /// The main entry point for the application.
@@ -21,6 +22,7 @@ namespace QLKS
             frmDangNhap fLogin = new frmDangNhap();
             if (fLogin.ShowDialog() == DialogResult.OK)
             {
+                CurrentUser = fLogin.CurrentUser;
                 Application.Run(new frmMain());
             }
             else

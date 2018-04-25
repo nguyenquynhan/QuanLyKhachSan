@@ -32,7 +32,7 @@
             this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
             this.heThongMenuItem = new System.Windows.Forms.MenuItem();
             this.qlNguoiDungMenuItem = new System.Windows.Forms.MenuItem();
-            this.menuItem5 = new System.Windows.Forms.MenuItem();
+            this.qlNguoiDungMenuItemLine = new System.Windows.Forms.MenuItem();
             this.thoatMenuItem = new System.Windows.Forms.MenuItem();
             this.danhMucMenuItem = new System.Windows.Forms.MenuItem();
             this.qlLoaiPhongMenuItem = new System.Windows.Forms.MenuItem();
@@ -56,7 +56,7 @@
             this.heThongMenuItem.Index = 0;
             this.heThongMenuItem.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.qlNguoiDungMenuItem,
-            this.menuItem5,
+            this.qlNguoiDungMenuItemLine,
             this.thoatMenuItem});
             this.heThongMenuItem.Shortcut = System.Windows.Forms.Shortcut.CtrlH;
             this.heThongMenuItem.Text = "&Hệ thống";
@@ -68,10 +68,10 @@
             this.qlNguoiDungMenuItem.Text = "Quản lý &người dùng";
             this.qlNguoiDungMenuItem.Click += new System.EventHandler(this.qlNguoiDungMenuItem_Click);
             // 
-            // menuItem5
+            // qlNguoiDungMenuItemLine
             // 
-            this.menuItem5.Index = 1;
-            this.menuItem5.Text = "-";
+            this.qlNguoiDungMenuItemLine.Index = 1;
+            this.qlNguoiDungMenuItemLine.Text = "-";
             // 
             // thoatMenuItem
             // 
@@ -153,7 +153,7 @@
         private System.Windows.Forms.MainMenu mainMenu1;
         private System.Windows.Forms.MenuItem heThongMenuItem;
         private System.Windows.Forms.MenuItem qlNguoiDungMenuItem;
-        private System.Windows.Forms.MenuItem menuItem5;
+        private System.Windows.Forms.MenuItem qlNguoiDungMenuItemLine;
         private System.Windows.Forms.MenuItem thoatMenuItem;
         private System.Windows.Forms.MenuItem danhMucMenuItem;
         private System.Windows.Forms.MenuItem qlLoaiPhongMenuItem;

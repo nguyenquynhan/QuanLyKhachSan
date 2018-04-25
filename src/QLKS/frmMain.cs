@@ -15,6 +15,7 @@ namespace QLKS
         public frmMain()
         {
             InitializeComponent();
+            PhanQuyen();
         }
         private void qlNguoiDungMenuItem_Click(object sender, EventArgs e)
         {
@@ -25,6 +26,16 @@ namespace QLKS
         private void thoatMenuItem_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void PhanQuyen()
+        {
+            //Nếu không phải là quản lý thì ẩn menu quản lý người dùng
+            if (!Program.CurrentUser.IsAdmin)
+            {
+                qlNguoiDungMenuItem.Visible = false;
+                qlNguoiDungMenuItemLine.Visible = false;
+            }
         }
     }
 }

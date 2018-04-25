@@ -59,7 +59,7 @@ namespace QLKS.DAL
             return ND;
         }
 
-        public bool DangNhap(string userName, string password)
+        public NguoiDung DangNhap(string userName, string password)
         {
             password = SecurityHelper.Encrypt(password);            
             string sql = "SELECT * FROM NguoiDung where UserName=@UserName AND Password=@Password";
@@ -71,7 +71,7 @@ namespace QLKS.DAL
             NguoiDung ND = _helper.MapReaderToList<NguoiDung>(dr).FirstOrDefault();
             _helper.DisConnect();
 
-            return ND != null;
+            return ND;
         }
 
         public bool Update(NguoiDung ND)

@@ -14,6 +14,8 @@ namespace QLKS.DTO
 
         public string Password { get; set; }
 
+        public bool IsAdmin { get; set; }
+
         public DateTime? NgayTao { get; set; }
 
         public int NguoiTao { get; set; }
