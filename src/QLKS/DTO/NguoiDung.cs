@@ -8,6 +8,8 @@ namespace QLKS.DTO
 {
     public class NguoiDung
     {
+        public int MaND { get; set; }
+
         public int MaNV { get; set; }
 
         public string UserName { get; set; }
@@ -23,6 +25,8 @@ namespace QLKS.DTO
         public DateTime? NgaySua { get; set; }
 
         public int NguoiSua { get; set; }
+
+        public string HoTen { get; set; }
 
     }
 

@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\NhanVienDAL.cs" />
     <Compile Include="DAL\NguoiDungDAL.cs" />
     <Compile Include="DAL\DataHelper.cs" />
     <Compile Include="DTO\ChiTietDichVuThuePhong.cs" />
@@ -92,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMDIChild.resx">
       <DependentUpon>frmMDIChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuanLyNguoiDung.resx">
+      <DependentUpon>frmQuanLyNguoiDung.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

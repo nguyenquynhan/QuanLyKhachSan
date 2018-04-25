@@ -19,3 +19,4 @@ D:\Me\Tho\Winform-Simple-Starter\src\QLKS\obj\Debug\QLKS.csproj.GenerateResource
 D:\Me\Tho\Winform-Simple-Starter\src\QLKS\obj\Debug\QLKS.exe
 D:\Me\Tho\Winform-Simple-Starter\src\QLKS\obj\Debug\QLKS.pdb
 D:\Me\Tho\Winform-Simple-Starter\src\QLKS\obj\Debug\QLKS.frmDangNhap.resources
+D:\Me\Tho\Winform-Simple-Starter\src\QLKS\obj\Debug\QLKS.frmQuanLyNguoiDung.resources
