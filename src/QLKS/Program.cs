@@ -8,6 +8,8 @@ namespace QLKS
 {
     static class Program
     {
+        static ApplicationContext MainContext = new ApplicationContext();
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +18,15 @@ namespace QLKS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            frmDangNhap fLogin = new frmDangNhap();
+            if (fLogin.ShowDialog() == DialogResult.OK)
+            {
+                Application.Run(new frmMain());
+            }
+            else
+            {
+                Application.Exit();
+            }           
         }
     }
 }

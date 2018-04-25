@@ -39,9 +39,9 @@
             this.qlDichVuMenuItem = new System.Windows.Forms.MenuItem();
             this.qlKhachHangMenuItem = new System.Windows.Forms.MenuItem();
             this.qlNhanVienMenuItem = new System.Windows.Forms.MenuItem();
+            this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.baoCaoMenuItem = new System.Windows.Forms.MenuItem();
             this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu1
@@ -111,6 +111,11 @@
             this.qlNhanVienMenuItem.Index = 3;
             this.qlNhanVienMenuItem.Text = "Quản lý nhân viên";
             // 
+            // menuItem1
+            // 
+            this.menuItem1.Index = 4;
+            this.menuItem1.Text = "Quản lý thuê phòng";
+            // 
             // baoCaoMenuItem
             // 
             this.baoCaoMenuItem.Index = 2;
@@ -128,11 +133,6 @@
             this.tabControlMain.TabIndex = 2;
             this.tabControlMain.Visible = false;
             // 
-            // menuItem1
-            // 
-            this.menuItem1.Index = 4;
-            this.menuItem1.Text = "Quản lý thuê phòng";
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -142,7 +142,9 @@
             this.IsMdiContainer = true;
             this.Menu = this.mainMenu1;
             this.Name = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý khách sạn";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ResumeLayout(false);
 
         }
