@@ -55,5 +55,19 @@ namespace QLKS
                 qlNguoiDungMenuItemLine.Visible = false;
             }
         }
+
+        private void tabControlMain_SelectedIndexChanged(object sender, System.EventArgs e)
+        {
+            foreach (frmMDIChild childForm in this.MdiChildren)
+            {
+                //Check for its corresponding MDI child form
+                if (childForm.TabPag.Equals(tabControlMain.SelectedTab))
+                {
+                    //Activate the MDI child form
+                    childForm.Select();
+                }
+            }
+        }
+
     }
 }
