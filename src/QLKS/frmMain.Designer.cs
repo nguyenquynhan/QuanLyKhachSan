@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.mainMenu1 = new System.Windows.Forms.MainMenu(this.components);
+            this.mainMenu = new System.Windows.Forms.MainMenu(this.components);
             this.heThongMenuItem = new System.Windows.Forms.MenuItem();
             this.qlNguoiDungMenuItem = new System.Windows.Forms.MenuItem();
             this.qlNguoiDungMenuItemLine = new System.Windows.Forms.MenuItem();
@@ -39,14 +39,14 @@
             this.qlDichVuMenuItem = new System.Windows.Forms.MenuItem();
             this.qlKhachHangMenuItem = new System.Windows.Forms.MenuItem();
             this.qlNhanVienMenuItem = new System.Windows.Forms.MenuItem();
-            this.menuItem1 = new System.Windows.Forms.MenuItem();
+            this.qlThuePhongMenuItem = new System.Windows.Forms.MenuItem();
             this.baoCaoMenuItem = new System.Windows.Forms.MenuItem();
             this.tabControlMain = new System.Windows.Forms.TabControl();
             this.SuspendLayout();
             // 
-            // mainMenu1
+            // mainMenu
             // 
-            this.mainMenu1.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mainMenu.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
             this.heThongMenuItem,
             this.danhMucMenuItem,
             this.baoCaoMenuItem});
@@ -65,8 +65,8 @@
             // 
             this.qlNguoiDungMenuItem.Index = 0;
             this.qlNguoiDungMenuItem.Shortcut = System.Windows.Forms.Shortcut.CtrlN;
+            this.qlNguoiDungMenuItem.Tag = "frmQuanLyNguoiDung";
             this.qlNguoiDungMenuItem.Text = "Quản lý &người dùng";
-            this.qlNguoiDungMenuItem.Click += new System.EventHandler(this.qlNguoiDungMenuItem_Click);
             // 
             // qlNguoiDungMenuItemLine
             // 
@@ -77,8 +77,8 @@
             // 
             this.thoatMenuItem.Index = 2;
             this.thoatMenuItem.Shortcut = System.Windows.Forms.Shortcut.CtrlT;
+            this.thoatMenuItem.Tag = "Thoat";
             this.thoatMenuItem.Text = "&Thoát";
-            this.thoatMenuItem.Click += new System.EventHandler(this.thoatMenuItem_Click);
             // 
             // danhMucMenuItem
             // 
@@ -88,7 +88,7 @@
             this.qlDichVuMenuItem,
             this.qlKhachHangMenuItem,
             this.qlNhanVienMenuItem,
-            this.menuItem1});
+            this.qlThuePhongMenuItem});
             this.danhMucMenuItem.Text = "&Danh mục";
             // 
             // qlLoaiPhongMenuItem
@@ -111,10 +111,11 @@
             this.qlNhanVienMenuItem.Index = 3;
             this.qlNhanVienMenuItem.Text = "Quản lý nhân viên";
             // 
-            // menuItem1
+            // qlThuePhongMenuItem
             // 
-            this.menuItem1.Index = 4;
-            this.menuItem1.Text = "Quản lý thuê phòng";
+            this.qlThuePhongMenuItem.Index = 4;
+            this.qlThuePhongMenuItem.Tag = "frmThuePhong";
+            this.qlThuePhongMenuItem.Text = "Quản lý thuê phòng";
             // 
             // baoCaoMenuItem
             // 
@@ -140,7 +141,7 @@
             this.ClientSize = new System.Drawing.Size(632, 453);
             this.Controls.Add(this.tabControlMain);
             this.IsMdiContainer = true;
-            this.Menu = this.mainMenu1;
+            this.Menu = this.mainMenu;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý khách sạn";
@@ -150,7 +151,7 @@
         }
         #endregion
 
-        private System.Windows.Forms.MainMenu mainMenu1;
+        private System.Windows.Forms.MainMenu mainMenu;
         private System.Windows.Forms.MenuItem heThongMenuItem;
         private System.Windows.Forms.MenuItem qlNguoiDungMenuItem;
         private System.Windows.Forms.MenuItem qlNguoiDungMenuItemLine;
@@ -162,7 +163,7 @@
         private System.Windows.Forms.MenuItem qlNhanVienMenuItem;
         private System.Windows.Forms.MenuItem baoCaoMenuItem;
         private System.Windows.Forms.TabControl tabControlMain;
-        private System.Windows.Forms.MenuItem menuItem1;
+        private System.Windows.Forms.MenuItem qlThuePhongMenuItem;
     }
 }
 

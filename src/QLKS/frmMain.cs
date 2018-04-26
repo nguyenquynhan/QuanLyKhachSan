@@ -16,16 +16,34 @@ namespace QLKS
         {
             InitializeComponent();
             PhanQuyen();
-        }
-        private void qlNguoiDungMenuItem_Click(object sender, EventArgs e)
-        {
-            frmQuanLyNguoiDung childForm = new frmQuanLyNguoiDung();
-            childForm.ShowInParent(this, tabControlMain);
+
+            //Regist event click menu item
+            foreach(MenuItem menu in mainMenu.MenuItems)
+            {
+                foreach (MenuItem subMenu in menu.MenuItems)
+                {
+                    subMenu.Click += MenuItem_Click;
+                }
+            }            
         }
 
-        private void thoatMenuItem_Click(object sender, EventArgs e)
+        private void MenuItem_Click(object sender, EventArgs e)
         {
-            Close();
+            MenuItem currentMenu = (MenuItem)sender;
+            frmMDIChild childForm = null;
+            if (currentMenu.Tag.Equals(qlNguoiDungMenuItem.Tag))
+                childForm = new frmQuanLyNguoiDung();
+            else if (currentMenu.Tag.Equals(qlThuePhongMenuItem.Tag))
+                childForm = new frmThuePhong();
+            
+            //Add any other form at here
+            else if (currentMenu.Tag.Equals(thoatMenuItem.Tag))
+            {
+                Close();
+            }
+
+            if(childForm != null)
+                childForm.ShowInParent(this, tabControlMain);
         }
 
         private void PhanQuyen()
