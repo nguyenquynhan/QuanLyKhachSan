@@ -29,6 +29,10 @@
         private void InitializeComponent()
         {
             this.dgvNguoiDung = new System.Windows.Forms.DataGridView();
+            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsAdmin = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.NgayTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.cbbNhanVien = new System.Windows.Forms.ComboBox();
@@ -40,10 +44,6 @@
             this.btnThemMoi = new System.Windows.Forms.Button();
             this.lblMaND = new System.Windows.Forms.Label();
             this.btnXoa = new System.Windows.Forms.Button();
-            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsAdmin = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.NgayTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNguoiDung)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,6 +66,37 @@
             this.dgvNguoiDung.Size = new System.Drawing.Size(894, 342);
             this.dgvNguoiDung.TabIndex = 0;
             this.dgvNguoiDung.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNguoiDung_CellClick);
+            // 
+            // HoTen
+            // 
+            this.HoTen.DataPropertyName = "HoTen";
+            this.HoTen.HeaderText = "Họ Tên";
+            this.HoTen.Name = "HoTen";
+            this.HoTen.ReadOnly = true;
+            this.HoTen.Width = 200;
+            // 
+            // UserName
+            // 
+            this.UserName.DataPropertyName = "UserName";
+            this.UserName.HeaderText = "Tên đăng nhập";
+            this.UserName.Name = "UserName";
+            this.UserName.ReadOnly = true;
+            this.UserName.Width = 200;
+            // 
+            // IsAdmin
+            // 
+            this.IsAdmin.DataPropertyName = "IsAdmin";
+            this.IsAdmin.HeaderText = "Là quản lý";
+            this.IsAdmin.Name = "IsAdmin";
+            this.IsAdmin.ReadOnly = true;
+            // 
+            // NgayTao
+            // 
+            this.NgayTao.DataPropertyName = "NgayTao";
+            this.NgayTao.HeaderText = "Ngày tạo";
+            this.NgayTao.Name = "NgayTao";
+            this.NgayTao.ReadOnly = true;
+            this.NgayTao.Width = 150;
             // 
             // label1
             // 
@@ -166,37 +197,6 @@
             this.btnXoa.Text = "Xóa";
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
-            // 
-            // HoTen
-            // 
-            this.HoTen.DataPropertyName = "HoTen";
-            this.HoTen.HeaderText = "Họ Tên";
-            this.HoTen.Name = "HoTen";
-            this.HoTen.ReadOnly = true;
-            this.HoTen.Width = 200;
-            // 
-            // UserName
-            // 
-            this.UserName.DataPropertyName = "UserName";
-            this.UserName.HeaderText = "Tên đăng nhập";
-            this.UserName.Name = "UserName";
-            this.UserName.ReadOnly = true;
-            this.UserName.Width = 200;
-            // 
-            // IsAdmin
-            // 
-            this.IsAdmin.DataPropertyName = "IsAdmin";
-            this.IsAdmin.HeaderText = "Là quản lý";
-            this.IsAdmin.Name = "IsAdmin";
-            this.IsAdmin.ReadOnly = true;
-            // 
-            // NgayTao
-            // 
-            this.NgayTao.DataPropertyName = "NgayTao";
-            this.NgayTao.HeaderText = "Ngày tạo";
-            this.NgayTao.Name = "NgayTao";
-            this.NgayTao.ReadOnly = true;
-            this.NgayTao.Width = 150;
             // 
             // frmQuanLyNguoiDung
             // 

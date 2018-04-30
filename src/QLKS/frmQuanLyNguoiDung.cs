@@ -45,7 +45,7 @@ namespace QLKS
 
         private void dgvNguoiDung_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            DataGridView dgv = sender as DataGridView;
+            DataGridView dgv =  (DataGridView)sender;
             if (dgv == null)
                 return;
             if (dgv.CurrentRow.Selected)
@@ -91,7 +91,7 @@ namespace QLKS
             if (lblMaND.Text.Length == 0)
             {
                 List<NguoiDung> nguoiDungs = _nguoiDungDAL.GetAll();
-                if(nguoiDungs.Any(r=>r.MaNV == nguoiDung.MaNV))
+                if(nguoiDungs.Any(r=> r.MaNV == nguoiDung.MaNV))
                 {
                     MessageBox.Show("Nhân viên này đã có tài khoản người dùng!");
                     return;

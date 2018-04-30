@@ -25,16 +25,6 @@ namespace QLKS.DAL
             listct = _helper.MapReaderToList<NhanVien>(dr);
             _helper.DisConnect();
             return listct;
-        }
-
-        public List<NhanVien> GetNhanVienNotHasNguoiDung()
-        {
-            List<NhanVien> listct = new List<NhanVien>();
-            string sql = "SELECT * FROM NhanVien WHERE MaNV NOT IN (SELECT MaNV FROM NguoiDung) ORDER BY NgayTao DESC";
-            SqlDataReader dr = _helper.ExcuteDataReader(sql, null, CommandType.Text);
-            listct = _helper.MapReaderToList<NhanVien>(dr);
-            _helper.DisConnect();
-            return listct;
-        }
+        }        
     }
 }

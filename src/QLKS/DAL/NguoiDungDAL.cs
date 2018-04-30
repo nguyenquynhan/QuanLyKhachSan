@@ -26,6 +26,7 @@ namespace QLKS.DAL
             _helper.DisConnect();
             return listct;
         }
+
         public bool Create(NguoiDung ND)
         {
             
@@ -35,18 +36,20 @@ namespace QLKS.DAL
                               new SqlParameter("@MaNV",ND.MaNV),
                               new SqlParameter("@UserName",ND.UserName),
                               new SqlParameter("@Password", ND.Password),
-                              new SqlParameter("@MaND",ND.MaND)
+                              new SqlParameter("@IsAdmin",ND.IsAdmin)
                               };
            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);//excutenonquery thực thi , trả về true or false( thêm xóa xửa)
         }
+
         public bool Delete(int ID)
         {
-            string sql = "delete NguoiDung where MaNV=@MaNV";
+            string sql = "delete NguoiDung where MaND=@MaND";
             SqlParameter[] pr ={
-                               new SqlParameter ("@MaNV", ID)
+                               new SqlParameter ("@MaND", ID)
                                };
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }
+
         public NguoiDung GetbyID(int ID)
         {
             NguoiDung ND = new NguoiDung();
