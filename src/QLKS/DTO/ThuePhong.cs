@@ -18,6 +18,8 @@ namespace QLKS.DTO
 
         public DateTime? NgayTraPH { get; set; }
 
+        public int SoLuongNguoi { get; set; }
+
         public float? TongTien { get; set; }
 
         public DateTime? NgayTao { get; set; }

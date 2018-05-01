@@ -37,7 +37,7 @@
             this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnNhanPhong = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
@@ -46,7 +46,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.dgvTienPhong = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,11 +60,13 @@
             this.label11 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTienPhong)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvPhong
             // 
+            this.dgvPhong.AllowUserToAddRows = false;
+            this.dgvPhong.AllowUserToDeleteRows = false;
             this.dgvPhong.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.dgvPhong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -74,23 +76,29 @@
             this.IsBusy});
             this.dgvPhong.Location = new System.Drawing.Point(12, 12);
             this.dgvPhong.Name = "dgvPhong";
+            this.dgvPhong.ReadOnly = true;
             this.dgvPhong.Size = new System.Drawing.Size(365, 524);
             this.dgvPhong.TabIndex = 0;
             // 
             // MaPH
             // 
+            this.MaPH.DataPropertyName = "MAPH";
             this.MaPH.HeaderText = "Số phòng";
             this.MaPH.Name = "MaPH";
+            this.MaPH.ReadOnly = true;
             // 
             // TenLoaiPhong
             // 
+            this.TenLoaiPhong.DataPropertyName = "TenLoaiPH";
             this.TenLoaiPhong.HeaderText = "Loại phòng";
             this.TenLoaiPhong.Name = "TenLoaiPhong";
+            this.TenLoaiPhong.ReadOnly = true;
             // 
             // IsBusy
             // 
             this.IsBusy.HeaderText = "Đang thuê";
             this.IsBusy.Name = "IsBusy";
+            this.IsBusy.ReadOnly = true;
             // 
             // dataGridView1
             // 
@@ -127,14 +135,15 @@
             this.ThanhTien.HeaderText = "Thành tiền";
             this.ThanhTien.Name = "ThanhTien";
             // 
-            // button1
+            // btnNhanPhong
             // 
-            this.button1.Location = new System.Drawing.Point(397, 12);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Nhận phòng";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnNhanPhong.Location = new System.Drawing.Point(397, 12);
+            this.btnNhanPhong.Name = "btnNhanPhong";
+            this.btnNhanPhong.Size = new System.Drawing.Size(75, 23);
+            this.btnNhanPhong.TabIndex = 2;
+            this.btnNhanPhong.Text = "Nhận phòng";
+            this.btnNhanPhong.UseVisualStyleBackColor = true;
+            this.btnNhanPhong.Click += new System.EventHandler(this.btnNhanPhong_Click);
             // 
             // comboBox1
             // 
@@ -207,20 +216,20 @@
             this.label5.TabIndex = 10;
             this.label5.Text = "18/03/2018";
             // 
-            // dataGridView2
+            // dgvTienPhong
             // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.dgvTienPhong.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvTienPhong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvTienPhong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4});
-            this.dataGridView2.Location = new System.Drawing.Point(397, 74);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.Size = new System.Drawing.Size(474, 150);
-            this.dataGridView2.TabIndex = 11;
+            this.dgvTienPhong.Location = new System.Drawing.Point(397, 74);
+            this.dgvTienPhong.Name = "dgvTienPhong";
+            this.dgvTienPhong.Size = new System.Drawing.Size(474, 150);
+            this.dgvTienPhong.TabIndex = 11;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -325,7 +334,7 @@
             this.Controls.Add(this.button4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.dataGridView2);
+            this.Controls.Add(this.dgvTienPhong);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -334,14 +343,16 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnNhanPhong);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.dgvPhong);
+            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmThuePhong";
             this.Text = "Quản lý thuê phòng";
+            this.Load += new System.EventHandler(this.frmThuePhong_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTienPhong)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -350,15 +361,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvPhong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MaPH;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenLoaiPhong;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsBusy;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.DataGridViewTextBoxColumn TenDV;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn Gia;
         private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnNhanPhong;
         private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
@@ -367,7 +375,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.DataGridView dgvTienPhong;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -379,5 +387,8 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaPH;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenLoaiPhong;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsBusy;
     }
 }

@@ -12,7 +12,7 @@ namespace QLKS
 {
     public partial class frmMDIChild : Form
     {
-        private Container _components = null;
+        //private Container _components = null;
         private TabControl tabCtrl;
         private TabPage tabPag;
 

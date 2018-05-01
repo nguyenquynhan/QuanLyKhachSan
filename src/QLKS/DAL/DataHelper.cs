@@ -109,7 +109,7 @@ namespace QLKS.DAL
                         Type type = t.GetType();
                         PropertyInfo prop = type.GetProperty(r.GetName(inc));
                         var value = r.GetValue(inc);
-                        if (value != DBNull.Value)
+                        if (prop != null && value != DBNull.Value)
                         {
                             prop.SetValue(t, value, null);
                         }

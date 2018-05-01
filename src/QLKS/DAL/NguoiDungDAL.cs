@@ -74,7 +74,6 @@ namespace QLKS.DAL
             SqlDataReader dr = _helper.ExcuteDataReader(sql, pr, CommandType.Text);
             NguoiDung ND = _helper.MapReaderToList<NguoiDung>(dr).FirstOrDefault();
             _helper.DisConnect();
-
             return ND;
         }
 

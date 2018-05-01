@@ -35,6 +35,7 @@
     <Reference Include="System" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,9 +47,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAL\ChiTietTienThuePhongDAL.cs" />
+    <Compile Include="DAL\KhachHangDAL.cs" />
     <Compile Include="DAL\NhanVienDAL.cs" />
     <Compile Include="DAL\NguoiDungDAL.cs" />
     <Compile Include="DAL\DataHelper.cs" />
+    <Compile Include="DAL\PhongDAL.cs" />
+    <Compile Include="DAL\ThuePhongDAL.cs" />
     <Compile Include="DTO\ChiTietDichVuThuePhong.cs" />
     <Compile Include="DTO\ChiTietTienThuePhong.cs" />
     <Compile Include="DTO\DichVu.cs" />
@@ -63,6 +68,12 @@
     </Compile>
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmNhanPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmNhanPhong.Designer.cs">
+      <DependentUpon>frmNhanPhong.cs</DependentUpon>
     </Compile>
     <Compile Include="frmQuanLyNguoiDung.cs">
       <SubType>Form</SubType>
@@ -99,6 +110,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmMDIChild.resx">
       <DependentUpon>frmMDIChild.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmNhanPhong.resx">
+      <DependentUpon>frmNhanPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmQuanLyNguoiDung.resx">
       <DependentUpon>frmQuanLyNguoiDung.cs</DependentUpon>

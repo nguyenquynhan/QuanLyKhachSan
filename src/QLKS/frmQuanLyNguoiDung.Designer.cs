@@ -215,6 +215,7 @@
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvNguoiDung);
+            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmQuanLyNguoiDung";
             this.Text = "Quản lý người dùng";
             this.Load += new System.EventHandler(this.frmQuanLyNguoiDung_Load);
