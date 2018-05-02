@@ -104,8 +104,8 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SecurityHelper.cs" />
-    <Compile Include="Utils.cs" />
+    <Compile Include="Utils\SecurityHelper.cs" />
+    <Compile Include="Utils\Utils.cs" />
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
