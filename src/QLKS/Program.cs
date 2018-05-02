@@ -18,7 +18,7 @@ namespace QLKS
         static void Main()
         {
             try
-            {
+            {                
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 frmDangNhap fLogin = new frmDangNhap();
@@ -34,6 +34,7 @@ namespace QLKS
             }
             catch (Exception ex)
             {
+                Utils.Log.Error(ex);
                 MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
