@@ -31,7 +31,15 @@ namespace QLKS.DAL
         public void Connect()
         {
             if (cn.State == ConnectionState.Closed)
-                cn.Open();    
+            {
+                try
+                {
+                    cn.Open();
+                }catch(Exception ex)
+                {
+                    throw ex;
+                }
+            }    
         }
         public void DisConnect()
         {
@@ -55,7 +63,7 @@ namespace QLKS.DAL
             catch (Exception ex)
             {
                 error = ex.Message;
-                return false;
+                throw ex;
             }            
         }
 
@@ -73,7 +81,7 @@ namespace QLKS.DAL
             catch (Exception ex)
             {
                 error = ex.Message;
-                return null;
+                throw ex;
             }
         }
         public DataTable ExcuteDataTable(string sql, SqlParameter[] prs, CommandType cmType)
@@ -92,7 +100,7 @@ namespace QLKS.DAL
             catch (Exception ex)
             {
                 error = ex.Message;
-                return null;
+                throw ex;
             }
         }
 

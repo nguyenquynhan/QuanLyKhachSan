@@ -17,18 +17,25 @@ namespace QLKS
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            frmDangNhap fLogin = new frmDangNhap();
-            if (fLogin.ShowDialog() == DialogResult.OK)
+            try
             {
-                CurrentUser = fLogin.CurrentUser;
-                Application.Run(new frmMain());
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                frmDangNhap fLogin = new frmDangNhap();
+                if (fLogin.ShowDialog() == DialogResult.OK)
+                {
+                    CurrentUser = fLogin.CurrentUser;
+                    Application.Run(new frmMain());
+                }
+                else
+                {
+                    Application.Exit();
+                }
             }
-            else
+            catch (Exception ex)
             {
-                Application.Exit();
-            }           
+                MessageBox.Show(ex.Message, "Exception", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }
