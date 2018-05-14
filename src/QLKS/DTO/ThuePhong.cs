@@ -30,6 +30,9 @@ namespace QLKS.DTO
 
         public int NguoiSua { get; set; }
 
+
+        public string TenKH { get; set; }
+
     }
 
 }

@@ -12,13 +12,13 @@ namespace QLKS.DTO
 
         public string TenLoaiPH { get; set; }
 
-        public float? GiaGioDau { get; set; }
+        public double? GiaGioDau { get; set; }
 
-        public float? GiaGioHai { get; set; }
+        public double? GiaGioHai { get; set; }
 
-        public float? GiaGioTiepTheo { get; set; }
+        public double? GiaGioTiepTheo { get; set; }
 
-        public float? GiaTheoNgay { get; set; }
+        public double? GiaTheoNgay { get; set; }
 
         public DateTime? NgayTao { get; set; }
 

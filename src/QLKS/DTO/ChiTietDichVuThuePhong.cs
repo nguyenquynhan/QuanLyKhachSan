@@ -14,11 +14,13 @@ namespace QLKS.DTO
 
         public int MaDV { get; set; }
 
-        public float? Gia { get; set; }
+        public string TenDV { get; set; }
+
+        public double? Gia { get; set; }
 
         public int SoLuong { get; set; }
 
-        public float? ThanhTien { get; set; }
+        public double? ThanhTien { get; set; }
 
         public DateTime? NgayTao { get; set; }
 

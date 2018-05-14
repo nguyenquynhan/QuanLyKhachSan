@@ -69,5 +69,11 @@ namespace QLKS
             }
         }
 
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            frmThuePhong frmThuePhong = new frmThuePhong();
+            frmThuePhong.ShowInParent(this,tabControlMain);
+        }
+
     }
 }

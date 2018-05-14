@@ -79,12 +79,13 @@ namespace QLKS
                 MaNV = (int)cbbNhanVien.SelectedValue,
                 UserName = txtUserName.Text,
                 Password = txtPassword.Text,
-                IsAdmin = cheIsAdmin.Checked
+                IsAdmin = cheIsAdmin.Checked    
             };
 
             if(lblMaND.Text.Length > 0)
             {
                 nguoiDung.MaND = int.Parse(lblMaND.Text);
+                
             }
 
             bool isSuccess = true;
@@ -128,8 +129,6 @@ namespace QLKS
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
-            if (lblMaND.Text.Length > 0)
-            {
                 var confirmResult = MessageBox.Show("Bạn có chắc là muốn xóa người dùng này?",
                                      "Xác nhận",
                                      MessageBoxButtons.YesNo);
@@ -146,7 +145,6 @@ namespace QLKS
                         MessageBox.Show("Xóa người dùng bị lỗi, làm ơn thử lại!");
                     }
                 }                
-            }
         }
     }
 }

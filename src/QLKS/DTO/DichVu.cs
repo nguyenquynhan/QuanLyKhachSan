@@ -12,7 +12,7 @@ namespace QLKS.DTO
 
         public string TenDV { get; set; }
 
-        public decimal? Gia { get; set; }
+        public Decimal? Gia { get; set; }
 
         public DateTime? NgayTao { get; set; }
 
