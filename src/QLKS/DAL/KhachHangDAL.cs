@@ -28,15 +28,15 @@ namespace QLKS.DAL
             _helper.DisConnect();
             return listkh;
         }
-        public List<KhachHang> GetTen()
-        {
-            List<KhachHang> tenKH = new List<KhachHang>();
-            string sql = "SELECT HoTen From KhachHang";
-            SqlDataReader dr = _helper.ExcuteDataReader(sql, null, CommandType.Text);
-            tenKH =_helper.MapReaderToList<KhachHang>(dr);
-            _helper.DisConnect();
-            return tenKH;
-        }
+        //public List<KhachHang> GetTen()
+        //{
+        //    List<KhachHang> tenKH = new List<KhachHang>();
+        //    string sql = "SELECT MaKH, HoTen From KhachHang";
+        //    SqlDataReader dr = _helper.ExcuteDataReader(sql, null, CommandType.Text);
+        //    tenKH =_helper.MapReaderToList<KhachHang>(dr);
+        //    _helper.DisConnect();
+        //    return tenKH;
+        //}
 
     }
 }

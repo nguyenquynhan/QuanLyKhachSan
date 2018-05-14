@@ -67,6 +67,26 @@ namespace QLKS.DAL
             }            
         }
 
+        public object ExecuteScalar(string sql, SqlParameter[] prs, CommandType cmType)
+        {
+            try
+            {
+                Connect();
+                cm = new SqlCommand(sql, cn);
+                if (prs != null)
+                    cm.Parameters.AddRange(prs);
+                object result = cm.ExecuteScalar();
+                DisConnect();
+
+                return result;
+            }
+            catch (Exception ex)
+            {
+                error = ex.Message;
+                return null;
+            }
+        }
+
         public SqlDataReader ExcuteDataReader(string sql, SqlParameter[] prs, CommandType cmType)
         {
             try

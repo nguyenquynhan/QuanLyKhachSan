@@ -15,7 +15,10 @@ namespace QLKS
     public partial class frmNhanPhong : Form
     {
         KhachHangDAL _khDAL = new KhachHangDAL();
+        ThuePhongDAL _thuePhongDAL = new ThuePhongDAL();
+        PhongDAL _phongDAL = new PhongDAL();
         public Phong CurrentPhong {get; set;}
+        public ThuePhong CurrentThuePhong { get; set; }
 
         public frmNhanPhong()
         {
@@ -27,14 +30,41 @@ namespace QLKS
             lblPhong.Text = CurrentPhong.MaPH.ToString();
             cbbKhachhang.DisplayMember = "HoTen";
             cbbKhachhang.ValueMember = "MaKH";
-            cbbKhachhang.DataSource = _khDAL.GetTen();
+            cbbKhachhang.DataSource = _khDAL.GetAll();
             dtpNgaynhan.Value = DateTime.Now;
             
         }
 
         private void btnNhan_Click(object sender, EventArgs e)
         {
+            if(lblPhong.Text.Length == 0 || cbbKhachhang.SelectedValue == null )
+            {
+                MessageBox.Show("Bạn cần nhập đầy đủ thông tin");
+                return;
+            }
+            ThuePhong thuePhong = new ThuePhong()
+            {
+                MaKH = (int)cbbKhachhang.SelectedValue,
+                MaPH = int.Parse(lblPhong.Text),
+                NgayNhanPH = dtpNgaynhan.Value,
+                SoLuongNguoi = (int) numSoLuongNguoi.Value,
+                NguoiTao=Program.CurrentUser.MaND,
+                TenKH = cbbKhachhang.SelectedText
+                
+            };
 
+            CurrentThuePhong = _thuePhongDAL.Create(thuePhong);
+            if (CurrentThuePhong != null)
+            {
+                MessageBox.Show("Nhận phòng thành công");
+                _phongDAL.UpdateDangThue(thuePhong.MaPH);
+
+                this.Close();
+            }
+            else
+            {
+                MessageBox.Show("Nhận phòng không thành công");
+            }
         }
     }
 }

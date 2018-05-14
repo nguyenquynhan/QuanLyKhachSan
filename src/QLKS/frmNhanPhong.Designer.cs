@@ -37,8 +37,8 @@
             this.dtpNgaynhan = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
             this.btnNhan = new System.Windows.Forms.Button();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            this.numSoLuongNguoi = new System.Windows.Forms.NumericUpDown();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoLuongNguoi)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -124,18 +124,18 @@
             this.btnNhan.UseVisualStyleBackColor = true;
             this.btnNhan.Click += new System.EventHandler(this.btnNhan_Click);
             // 
-            // numericUpDown1
+            // numSoLuongNguoi
             // 
-            this.numericUpDown1.Location = new System.Drawing.Point(85, 135);
-            this.numericUpDown1.Minimum = new decimal(new int[] {
+            this.numSoLuongNguoi.Location = new System.Drawing.Point(85, 135);
+            this.numSoLuongNguoi.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(153, 20);
-            this.numericUpDown1.TabIndex = 12;
-            this.numericUpDown1.Value = new decimal(new int[] {
+            this.numSoLuongNguoi.Name = "numSoLuongNguoi";
+            this.numSoLuongNguoi.Size = new System.Drawing.Size(153, 20);
+            this.numSoLuongNguoi.TabIndex = 12;
+            this.numSoLuongNguoi.Value = new decimal(new int[] {
             1,
             0,
             0,
@@ -146,7 +146,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(250, 262);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.numSoLuongNguoi);
             this.Controls.Add(this.btnNhan);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dtpNgaynhan);
@@ -160,7 +160,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Nhận phòng";
             this.Load += new System.EventHandler(this.frmNhanPhong_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoLuongNguoi)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -177,6 +177,6 @@
         private System.Windows.Forms.DateTimePicker dtpNgaynhan;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnNhan;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numSoLuongNguoi;
     }
 }
