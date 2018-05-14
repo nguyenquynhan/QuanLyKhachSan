@@ -117,4 +117,51 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        AAABAAEAGBgAAAEAIACICQAAFgAAACgAAAAYAAAAMAAAAAEAIAAAAAAAAAkAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABrbGsAQUJCBoqIhiekop5VsK6perKwrIyysKuJqqiicpaV
+        kEpeXlseAAAABA0NDQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAjY2NAG9w
+        cQevratCvry7nLWzvNqfnLf0ioiz/YGAtP+FhLn/l5bB+7i3z+7T09jMxsbChYGBfi8AAAADGhoaAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ1NgDs5+UAoaCfIMG/vpauq7zvbm2m/zIykv8VFY3/DQ2R/w0N
+        mf8QEaL/Fxer/ykptv9WVsb/n5/Y/svK1Nypp6NyPDs7EXl3dgAAAAAAAAAAAAAAAAAAAAAAWFlaAOTe
+        3ACrqKYxu7i7w4KArP8kJIn/AwN//wQEg/8ICIr/CwuR/w4Omf8QEKH/ExOq/xUUs/8VFbv/HR3C/1VV
+        y/+trM74sK6sm1JRUBqPjYwAAAAAAAAAAAAkJSUAvLi4AK6rqSi5trrKZ2ak/woKgP8BAX3/BASB/wYG
+        hf8ICIr/CgqQ/w0Nl/8PD5//EhKm/xQUr/8XF7f/GRm//xgYxf81Ncn/npzK/K6rqZw6OTkRXFtbAAAA
+        AACpp6gApaOhDry5uqxvbqj/BweF/wABgP8CAoD/AQGC/wQEhv8HB4r/CQmP/wsLlf8ODpz/EBCj/xIS
+        qv8SErD/FRW3/xkZvv8YGMT/MzPG/6SixfidmpZ2AAAAAx4dHQDd1tYAvrq3ZJGPsfoREY3/AACH/wEB
+        hf8HB4T/MDCI/xcXg/8EBIn/CAiP/woKk/8MDJn/Dg6f/xMTpf9ERK7/Kyuq/xQUtP8YGLv/Fha//0tL
+        wf+vrLjfdXJvMqWiogCzsK0XuLW6xkdHn/8AAI3/AQGL/wcGiv9SUpT/l5eb/3d3lf8aGob/BQWM/wkJ
+        kv8KCpb/Dg6a/1paqv/Hx83/pqbF/y4uqP8UFLL/Fha2/xgYt/+Cgbz/pKCdjAAAAAPAvLhYnZq09S4u
+        m/8GBpP/AACP/yUllf+dnaf/oaGg/52dnP93d5f/GhqI/wUFj/8KCpT/T0+c/6yssv/ExMP/1tbS/3l5
+        uv8QEKj/ExOt/xERrv9DQ7L/q6ev0mFfWyLBvbueeXet/y8vnv8dHZr/AwOU/wkJk/9iYqP/pqao/6Gh
+        of+enp3/d3eX/x4ei/9HR5P/lZWb/6ampf+1tbP/oaG+/zIyqf8ODqP/EBCl/xAQpv8eHqb/mJWy846K
+        hFO7t7rOYF+q/zAwov8wMKD/Ghqb/wIClf8JCZX/YmKk/6enqf+ioqH/np6d/4eHmf+Pj5X/lpaV/52d
+        m/+Pj6v/LS2g/woJmv8NDZz/DQ2d/w4Onv8PD53/f3yt/Z+bln+1srnlVFSr/zMzp/80NKX/MTGi/x0d
+        nf8FBZf/CQmX/2Jipf+mpqr/o6Oi/56enf+YmJj/l5eW/4WFov8pKZv/BgaU/wkJlf8KCpb/CwuX/wsL
+        l/8JCpX/bGun/6WhnZi0sbnqVFOu/zY2rP82Nqn/NTWn/zMzpP8mJqD/DQ2a/w8Pmf+IiKz/ra2r/6Oj
+        o/+dnZ3/mpqf/zs7lf8CAo//BgaR/wcHkf8ICJH/CAiR/wkJkf8GB4//aGaj/6ahnp26trzdXFux/zk5
+        sf85Oq7/ODir/zY2qf80NKb/MTGj/2ppsf+1tb3/tLS0/6ysq/+kpKT/n5+f/3d3mf8ZGYr/AgKN/wUF
+        j/8GBo7/BgaN/wYGjP8FBYr/b22j/6ainozCv7+7b220/zw8tf89PbP/Ozuw/zk5rf86Oqv/gIC+/8/P
+        0//Nzcz/w8PD/7Cwuv+rq67/pqal/6KioP95eZr/GBiJ/wEBjP8DA4z/AwOK/wQEif8JCYj/hYKn+qOe
+        mWbMycWAj425/kJCuf9AQLj/Pj61/0BAtP+Kisr/4ODk/+Dg3//Y2Nf/trbM/1lZr/98fLD/srK0/6ur
+        q/+np6b/fn6d/yQkiv8REYz/EhKL/xERiP8rK47/oZ2t5ZeTjjTNy8c3s7HB51dXvP9DQ73/QEC6/2Rk
+        xP/o6PD/8fHv/+rq6f/Dw9r/WVm2/zQ0p/87O6f/gICz/7S0tv+urq7/ra2q/3V1o/8pKZL/KCiQ/yMj
+        jP9kYp7/sa2usGdlYwq0tLMGzMnJnouKwf9ISML/RUW//05OwP+uruD/9vb2/8/P5v9fX77/Ozuv/zs7
+        rf84OKr/PT2p/4GBtP+3t7j/paW3/1JSpv8uLpn/LCyW/zc3lv+dmrL3sa2qVtHMzADT0dEA0M7LNMjF
+        0ONxccj/SEjE/0dHwf9RUcP/jo7W/2Rkxf9AQLf/QEC1/z8/s/89PbD/Ozut/0BArP9xcbX/V1eu/zQ0
+        ov8zM5//MTGc/3p4rP+7t7itl5WUDZ2bnAC4t7gAAAAAAObl4mzNzeP3aWnL/0lJxv9JScT/RkbB/0ZG
+        v/9GRr3/RES7/0NDuP9BQbX/QECz/z4+sP87O63/Ojqq/zk5qP83N6X/ammt/7azutezsK4wwLy8ACUl
+        JgAAAAAA19fYAMzMzQjz8vCDzs7k93NzzP9NTcj/S0vG/0pKxP9JScL/SEi//0dHvf9FRbr/RES4/0JC
+        tv9BQbP/Pj2w/0FBrv92dbT/tbK73rm1s0f/+PMAg4OEAAAAAAAAAAAAAAAAANvb2wDU1NQI6unmb8/N
+        2OeRkMn/YWHI/09PyP9LS8b/SkrE/0lJwv9HR7//Rka9/0REuv9HR7j/X1+4/5aUvP67t7vFuLSxPP//
+        /wCSkZIAAAAAAAAAAAAAAAAAAAAAAAAAAAC9vLwAq6yuAtTSzznQzc2ourjI7ZiXxf96ecT/aGfE/2Bg
+        wv9gYMH/amnB/318wP+cmsD8t7S/2r+7uX+wrKka1tHLAHh4eQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+        AAAAAAAACw0RANDNywC8u7oJzcvIQc7LyJDGw8XMvbrC7ba0v/q3tMD3vbrB5MK+v7nBvblztrOvJ4B/
+        gAKYlZQAAAAAAAAAAAAAAAAAAAAAAAAAAAD+AH8A+AAfAPAADwDgAAcAwAADAIAAAQCAAAEAAAAAAAAA
+        AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQCAAAEAwAADAMAABwDgAA8A8AAfAPwA
+        PwA=
+</value>
+  </data>
 </root>

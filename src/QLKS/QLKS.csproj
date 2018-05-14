@@ -79,6 +79,12 @@
     <Compile Include="frmDangNhap.Designer.cs">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmException.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmException.Designer.cs">
+      <DependentUpon>frmException.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmNhanPhong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -103,12 +109,6 @@
     <Compile Include="frmMDIChild.Designer.cs">
       <DependentUpon>frmMDIChild.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmReportHoaDon.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmReportHoaDon.Designer.cs">
-      <DependentUpon>frmReportHoaDon.cs</DependentUpon>
-    </Compile>
     <Compile Include="frmThuePhong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -123,6 +123,9 @@
     <EmbeddedResource Include="frmDangNhap.resx">
       <DependentUpon>frmDangNhap.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmException.resx">
+      <DependentUpon>frmException.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -134,9 +137,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmQuanLyNguoiDung.resx">
       <DependentUpon>frmQuanLyNguoiDung.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="frmReportHoaDon.resx">
-      <DependentUpon>frmReportHoaDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThuePhong.resx">
       <DependentUpon>frmThuePhong.cs</DependentUpon>
