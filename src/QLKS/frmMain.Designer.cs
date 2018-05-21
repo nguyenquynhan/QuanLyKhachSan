@@ -40,10 +40,10 @@
             this.qlKhachHangMenuItem = new System.Windows.Forms.MenuItem();
             this.qlNhanVienMenuItem = new System.Windows.Forms.MenuItem();
             this.qlThuePhongMenuItem = new System.Windows.Forms.MenuItem();
+            this.qlPhongMenuItem = new System.Windows.Forms.MenuItem();
             this.baoCaoMenuItem = new System.Windows.Forms.MenuItem();
             this.qlDanhSachHoaDonMenuItem = new System.Windows.Forms.MenuItem();
             this.tabControlMain = new System.Windows.Forms.TabControl();
-            this.qlPhongMenuItem = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -97,6 +97,7 @@
             // qlLoaiPhongMenuItem
             // 
             this.qlLoaiPhongMenuItem.Index = 0;
+            this.qlLoaiPhongMenuItem.Tag = "frmQuanLyLoaiPhong";
             this.qlLoaiPhongMenuItem.Text = "Quản lý loại phòng";
             // 
             // qlDichVuMenuItem
@@ -123,6 +124,12 @@
             this.qlThuePhongMenuItem.Tag = "frmThuePhong";
             this.qlThuePhongMenuItem.Text = "Quản lý thuê phòng";
             // 
+            // qlPhongMenuItem
+            // 
+            this.qlPhongMenuItem.Index = 5;
+            this.qlPhongMenuItem.Tag = "frmQuanLyPhong";
+            this.qlPhongMenuItem.Text = "Quản lý phòng";
+            // 
             // baoCaoMenuItem
             // 
             this.baoCaoMenuItem.Index = 2;
@@ -148,12 +155,6 @@
             this.tabControlMain.TabIndex = 2;
             this.tabControlMain.Visible = false;
             this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.tabControlMain_SelectedIndexChanged);
-            // 
-            // qlPhongMenuItem
-            // 
-            this.qlPhongMenuItem.Index = 5;
-            this.qlPhongMenuItem.Tag = "frmQuanLyPhong";
-            this.qlPhongMenuItem.Text = "Quản lý phòng";
             // 
             // frmMain
             // 

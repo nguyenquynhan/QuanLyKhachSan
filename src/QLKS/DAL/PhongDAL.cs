@@ -16,7 +16,19 @@ namespace QLKS.DAL
         {
             _helper=new DataHelper();
         }
+        //Lay tat ca nhung phong con ton tai
         public List<Phong> GetAlldgvPhong()
+        {
+            List<Phong> Listp = new List<Phong>();
+            string sql = "SELECT PH.MaPH, PH.MaLoaiPH, LP.TenLoaiPH, PH.DangThue FROM Phong PH JOIN LoaiPhong LP ON PH.MaLoaiPH =LP.MaLoaiPH where PH.DaXoa = 0";
+            SqlDataReader dr = _helper.ExcuteDataReader(sql, null, CommandType.Text);
+            Listp = _helper.MapReaderToList<Phong>(dr);
+            _helper.DisConnect();
+            return Listp;
+        }
+
+        //Lay tat ca cac phong (Da xoa va Chua Xoa)
+        public List<Phong> GetAll()
         {
             List<Phong> Listp = new List<Phong>();
             string sql = "SELECT PH.MaPH, PH.MaLoaiPH, LP.TenLoaiPH, PH.DangThue FROM Phong PH JOIN LoaiPhong LP ON PH.MaLoaiPH =LP.MaLoaiPH";
@@ -32,6 +44,7 @@ namespace QLKS.DAL
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }
 
+        //Update Phong khi thuc hien thanh toan
         public bool UpdatePhong(Phong PH)
         {
             SqlParameter[] pr = new SqlParameter[] { };
@@ -44,14 +57,40 @@ namespace QLKS.DAL
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }
 
-        public bool Delete(int MaPH)
+        //Update Phong khi thuc hien xoa phong_
+        public bool UpdateXoaForQLPhong(Phong PH)
         {
-            string sql = "delete Phong where MaPH = @MaPH";
-            SqlParameter[] pr ={
-                               new SqlParameter ("@MaPH", MaPH)
-                               };
+            SqlParameter[] pr = new SqlParameter[] { };
+            string sql = "UPDATE Phong SET DaXoa = 1, NgaySua=@NgaySua, NguoiSua=@NguoiSua Where MaPH = @MaPH";
+            pr = new SqlParameter[] {
+                    new SqlParameter("@MaPH",PH.MaPH),
+                    new SqlParameter("@NgaySua",PH.NgaySua),
+                    new SqlParameter("@NguoiSua", PH.NguoiSua)
+            };
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }
+
+        //Update Phong khi thuc hien them phong
+        public bool UpdateForQLPhong(Phong PH)
+        {
+            SqlParameter[] pr = new SqlParameter[] { };
+            string sql = "UPDATE Phong SET DaXoa = 0, MaLoaiPH = @MaLoaiPH, NgaySua=@NgaySua, NguoiSua=@NguoiSua Where MaPH = @MaPH";
+            pr = new SqlParameter[] {
+                    new SqlParameter("@MaPH",PH.MaPH),
+                    new SqlParameter("@MaLoaiPH",PH.MaLoaiPH ),
+                    new SqlParameter("@NgaySua",PH.NgaySua),
+                    new SqlParameter("@NguoiSua", PH.NguoiSua)
+            };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
+        //public bool Delete(int MaPH)
+        //{
+        //    string sql = "delete Phong where MaPH = @MaPH";
+        //    SqlParameter[] pr ={
+        //                       new SqlParameter ("@MaPH", MaPH)
+        //                       };
+        //    return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        //}
 
         public bool Update(Phong ph)
         {
@@ -67,12 +106,12 @@ namespace QLKS.DAL
 
         public bool Create(Phong ph)
         {
-            string sql = "Insert into Phong (MaPH, TenLoaiPH, NgayTao, NguoiTao) values (@MaPH, @TenLoaiPH, @NgayTao, @NguoiTao)";
+            string sql = "Insert into Phong (MaPH, MaLoaiPH, NgayTao, NguoiTao) values (@MaPH, @MaLoaiPH, @NgayTao, @NguoiTao)";
             SqlParameter[] pr = {
                                  new SqlParameter("@MaPH",ph.MaPH ),
-                                new SqlParameter("@TenLoaiPH",ph.TenLoaiPH ),
-                                new SqlParameter("@NgaySua", ph.NgaySua ),
-                                new SqlParameter("@NguoiSua", ph.NguoiSua)
+                                new SqlParameter("@MaLoaiPH",ph.MaLoaiPH ),
+                                new SqlParameter("@NgayTao", ph.NgayTao ),
+                                new SqlParameter("@NguoiTao", ph.NguoiTao)
                               };
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }

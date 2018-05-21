@@ -103,11 +103,11 @@ namespace QLKS
                 if (isSuccess)
                 {
                     LoadData();
-                    MessageBox.Show("Xóa thành công", "Thông báo");
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Xóa nhân viên bị lỗi, vui lòng thử lại!");
+                    MessageBox.Show("Xóa nhân viên bị lỗi, vui lòng thử lại!","Thông báo", MessageBoxButtons.OK);
                 }
             }    
         }
@@ -140,7 +140,7 @@ namespace QLKS
             {
                 if (txtTenNV.Text.Length == 0 || txtSDT.Text.Length == 0 || txtCMND.Text.Length == 0)
                 {
-                    MessageBox.Show("Bạn cần nhập đầy đủ thông tin!");
+                    MessageBox.Show("Bạn cần nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     btnXoa.Enabled = false;
                     btnSua.Enabled = false;
                     return;
@@ -168,11 +168,11 @@ namespace QLKS
                 LoadData();
                 ThemMoi();
                // ReSelectDataGridview(selectedIndex);
-                MessageBox.Show("Lưu thành công");
+                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
             }
             else
             {
-                MessageBox.Show("Lưu khách hàng bị lỗi, làm ơn thử lại!");
+                MessageBox.Show("Lưu khách hàng bị lỗi, làm ơn thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             btnThem.Enabled = true;
             txtCMND.Enabled = txtDiaChi.Enabled = txtSDT.Enabled = txtTenNV.Enabled = dtpNgaySinh.Enabled = cbbGioiTinh.Enabled = txtEmail.Enabled = dtpNgayLamViec.Enabled = false;
@@ -240,7 +240,7 @@ namespace QLKS
                     }
                     else
                     {
-                        MessageBox.Show("Điều kiện tìm kiếm không đúng, mã nhân viên phải là kiểu số, vui lòng xem lại!");
+                        MessageBox.Show("Điều kiện tìm kiếm không đúng, mã nhân viên phải là kiểu số, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtTimKiem.Text = null;
                     }
                 }

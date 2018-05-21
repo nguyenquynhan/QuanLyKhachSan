@@ -77,31 +77,31 @@ namespace QLKS
         private void btnXoa_Click(object sender, EventArgs e)
         {
 
-            //var confirmResult = MessageBox.Show("Bạn có chắc là muốn xóa phòng này?",
-            //                        "Xác nhận",
-            //                        MessageBoxButtons.YesNo);
-            //if (confirmResult == DialogResult.Yes)
-            //{
-            //    int maPH = int.Parse(txtSoPhong.Text);
-            //    bool isSuccess = true;
-            //    _thuePhongs = _thuePhongDAL.GetAll();
-            //    if (_thuePhongs.Any(r => r.MaPH == int.Parse(txtSoPhong.Text)))
-            //    {
-            //        isSuccess = _ctdvDAL.DeleteByMaTP();
-            //    }
-                
-            //    isSuccess = _thuePhongDAL.Delete(maPH);
-            //    isSuccess = _phongDAL.Delete(maPH);
-            //    if (isSuccess)
-            //    {
-            //        LoadData();
-            //        MessageBox.Show("Xóa thành công", "Thông báo");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Xóa phòng bị lỗi, vui lòng thử lại!");
-            //    }
-            //} 
+            var confirmResult = MessageBox.Show("Bạn có chắc là muốn xóa phòng này?",
+                                    "Xác nhận",
+                                    MessageBoxButtons.YesNo);
+            if (confirmResult == DialogResult.Yes)
+            {
+                Phong phong = new Phong()
+                {
+                    MaPH = int.Parse(txtSoPhong.Text),
+                    MaLoaiPH = (int)cbbLoaiPhong.SelectedValue,
+                    NgaySua = DateTime.Today,
+                    NguoiSua = Program.CurrentUser.MaND
+                };
+                bool isSuccess = true;
+                //Xoa nhung chi can update tinh trang DaXoa cua phong
+                isSuccess = _phongDAL.UpdateXoaForQLPhong(phong);
+                if (isSuccess)
+                {
+                    LoadData();
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK);
+                }
+                else
+                {
+                    MessageBox.Show("Xóa phòng bị lỗi, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            } 
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
@@ -112,12 +112,12 @@ namespace QLKS
             btnSua.Enabled = true;
             if (txtSoPhong.Text.Length == 0)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (IsNumber(txtSoPhong.Text) == false)
             {
-                MessageBox.Show("Số phòng không hợp lệ, vui lòng thử lại!");
+                MessageBox.Show("Số phòng không hợp lệ, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -131,11 +131,12 @@ namespace QLKS
             // Kiem tra co phai dang them phong hay k?
             if (lblCheck.Text == "t")
             {
-                _phongs = _phongDAL.GetAlldgvPhong();
-                if (_phongs.Any(r => r.MaPH == phong.MaPH))
+                _phongs = _phongDAL.GetAll();
+                if (_phongs.Any(r => r.MaPH == phong.MaPH))//Kiem tra phong nay da ton tai thi cap nhat DaXoa = 0
                 {
-                    MessageBox.Show("Phòng này đã tồn tại!");
-                    return;
+                    phong.NgaySua = DateTime.Today;
+                    phong.NguoiSua = Program.CurrentUser.MaND;
+                    isSuccess = _phongDAL.UpdateForQLPhong(phong);
                 }
                 else
                 {
@@ -161,11 +162,11 @@ namespace QLKS
                 LoadData();
                 ThemMoi();
                 //ReSelectDataGridview(selectedIndex);
-                MessageBox.Show("Lưu thành công");
+                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
             }
             else
             {
-                MessageBox.Show("Lưu phòng bị lỗi, vui lòng thử lại!");
+                MessageBox.Show("Lưu phòng bị lỗi, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             btnThem.Enabled = true;
             btnSua.Enabled = true;

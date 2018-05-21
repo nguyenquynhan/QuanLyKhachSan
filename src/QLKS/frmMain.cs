@@ -45,6 +45,8 @@ namespace QLKS
                 childForm = new frmDanhSachHoaDon();
             else if (currentMenu.Tag.Equals(qlPhongMenuItem.Tag))
                 childForm = new frmQuanLyPhong();
+            else if (currentMenu.Tag.Equals(qlLoaiPhongMenuItem.Tag))
+                childForm = new frmQuanLyLoaiPhong();
             //Add any other form at here
             else if (currentMenu.Tag.Equals(thoatMenuItem.Tag))
             {

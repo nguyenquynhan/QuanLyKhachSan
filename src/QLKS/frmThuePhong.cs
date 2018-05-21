@@ -218,7 +218,7 @@ namespace QLKS
                 TinhTongTien();
             }
             else
-                MessageBox.Show("Them moi that bai!");
+                MessageBox.Show("Thêm mới thất bại, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
         private void LoadDataDgvDichVu()
         {
@@ -254,13 +254,13 @@ namespace QLKS
                     }
                     else
                     {
-                        MessageBox.Show("Xóa người dùng bị lỗi, làm ơn thử lại!");
+                        MessageBox.Show("Xóa người dùng bị lỗi, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
 
             }
             else
-                MessageBox.Show("Vui lòng chọn dịch vụ cần xóa!");
+                MessageBox.Show("Vui lòng chọn dịch vụ cần xóa!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void TinhTongTien()
@@ -322,12 +322,12 @@ namespace QLKS
                 dgvDichVu.DataSource = null;
                 dgvTienThuePhong.DataSource = null;
                 SelectedThuePhong = null;
-                MessageBox.Show("Thanh toán thành công");
+                MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK);
                 
             }
             else
             {
-                MessageBox.Show("Thanh toán thất bại, vui lòng xem lại!");
+                MessageBox.Show("Thanh toán thất bại, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

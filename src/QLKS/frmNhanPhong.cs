@@ -42,7 +42,7 @@ namespace QLKS
         {
             if(lblPhong.Text.Length == 0 || cbbKhachhang.SelectedValue == null )
             {
-                MessageBox.Show("Bạn cần nhập đầy đủ thông tin");
+                MessageBox.Show("Bạn cần nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             ThuePhong thuePhong = new ThuePhong()
@@ -59,14 +59,14 @@ namespace QLKS
             CurrentThuePhong = _thuePhongDAL.Create(thuePhong);
             if (CurrentThuePhong != null)
             {
-                MessageBox.Show("Nhận phòng thành công");
+                MessageBox.Show("Nhận phòng thành công", "Thông báo", MessageBoxButtons.OK);
                 _phongDAL.UpdateDangThue(thuePhong.MaPH);
                 XacNhan = true;
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Nhận phòng không thành công");
+                MessageBox.Show("Nhận phòng không thành công, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

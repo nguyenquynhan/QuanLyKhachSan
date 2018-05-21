@@ -86,5 +86,7 @@ namespace QLKS
                 tabCtrl.Visible = false;
             }
         }
+
+
     }
 }

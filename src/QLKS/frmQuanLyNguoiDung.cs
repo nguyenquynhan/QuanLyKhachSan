@@ -34,6 +34,7 @@ namespace QLKS
         {
             List<NguoiDung> nguoiDungs = _nguoiDungDAL.GetAll();
             dgvNguoiDung.DataSource = nguoiDungs;
+            
         }
 
         private void LoadNhanVien()
@@ -54,9 +55,11 @@ namespace QLKS
                 cbbNhanVien.SelectedValue = selected.MaNV;
                 txtUserName.Text = selected.UserName;
                 cheIsAdmin.Checked = selected.IsAdmin;
+                txtPassword.Text = selected.Password;
                 lblMaND.Text = selected.MaND.ToString();
-                txtPassword.Text = string.Empty;
+               // txtPassword.Text = string.Empty;
             }
+            btnXoa.Enabled = true;
         }
 
         private void btnThemMoi_Click(object sender, EventArgs e)
@@ -70,7 +73,7 @@ namespace QLKS
                 || txtUserName.Text.Length == 0
                 || (lblMaND.Text.Length == 0 && txtPassword.Text.Length == 0))
             {
-                MessageBox.Show("Bạn cần nhập đầy đủ thông tin.");
+                MessageBox.Show("Bạn cần nhập đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -94,7 +97,7 @@ namespace QLKS
                 List<NguoiDung> nguoiDungs = _nguoiDungDAL.GetAll();
                 if(nguoiDungs.Any(r=> r.MaNV == nguoiDung.MaNV))
                 {
-                    MessageBox.Show("Nhân viên này đã có tài khoản người dùng!");
+                    MessageBox.Show("Nhân viên này đã có tài khoản người dùng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else
@@ -111,10 +114,11 @@ namespace QLKS
             {
                 LoadData();
                 ThemMoi();
+                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
             }
             else
             {
-                MessageBox.Show("Lưu người dùng bị lỗi, làm ơn thử lại!");
+                MessageBox.Show("Lưu người dùng bị lỗi, làm ơn thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -125,10 +129,12 @@ namespace QLKS
             txtPassword.Text = string.Empty;
             cheIsAdmin.Checked = false;
             lblMaND.Text = string.Empty;
+            btnXoa.Enabled = false;
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
+
                 var confirmResult = MessageBox.Show("Bạn có chắc là muốn xóa người dùng này?",
                                      "Xác nhận",
                                      MessageBoxButtons.YesNo);
@@ -139,12 +145,14 @@ namespace QLKS
                     if (isSuccess)
                     {
                         LoadData();
+                        ThemMoi();
                     }
                     else
                     {
-                        MessageBox.Show("Xóa người dùng bị lỗi, làm ơn thử lại!");
+                        MessageBox.Show("Xóa người dùng bị lỗi, làm ơn thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }                
+                }
+                btnLuu.Enabled = true; 
         }
     }
 }

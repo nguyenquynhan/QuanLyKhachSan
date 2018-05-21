@@ -90,7 +90,7 @@ namespace QLKS
                         }
                         else
                         {
-                            MessageBox.Show("Điều kiện tìm kiếm không đúng,mã thuê phòng phải là kiểu số, vui lòng xem lại!");
+                            MessageBox.Show("Điều kiện tìm kiếm không đúng, mã thuê phòng phải là kiểu số, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             txtTimKiem.Text = null;
                         }
                    
@@ -106,7 +106,7 @@ namespace QLKS
                         }
                         else
                         {
-                            MessageBox.Show("Điều kiện tìm kiếm không đúng,mã phòng phải là kiểu số, vui lòng xem lại!");
+                            MessageBox.Show("Điều kiện tìm kiếm không đúng,mã phòng phải là kiểu số, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             txtTimKiem.Text = null;
                         }
                     

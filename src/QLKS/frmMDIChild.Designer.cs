@@ -30,16 +30,17 @@
         {
             this.SuspendLayout();
             // 
-            // MDIChild
+            // frmMDIChild
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
-            this.Name = "MDIChild";
+            this.Name = "frmMDIChild";
             this.Text = "MDIChild";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.MDIChild_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MDIChild_FormClosing);
+          
             this.ResumeLayout(false);
 
         }

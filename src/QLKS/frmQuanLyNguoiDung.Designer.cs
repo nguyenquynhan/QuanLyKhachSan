@@ -29,10 +29,6 @@
         private void InitializeComponent()
         {
             this.dgvNguoiDung = new System.Windows.Forms.DataGridView();
-            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsAdmin = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.NgayTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.cbbNhanVien = new System.Windows.Forms.ComboBox();
@@ -44,6 +40,11 @@
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThemMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
+            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsAdmin = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.PassWord = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNguoiDung)).BeginInit();
             this.SuspendLayout();
             // 
@@ -57,46 +58,16 @@
             this.dgvNguoiDung.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNguoiDung.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.HoTen,
-            this.UserName,
             this.IsAdmin,
+            this.PassWord,
+            this.Username,
             this.NgayTao});
-            this.dgvNguoiDung.Location = new System.Drawing.Point(12, 121);
+            this.dgvNguoiDung.Location = new System.Drawing.Point(15, 121);
             this.dgvNguoiDung.Name = "dgvNguoiDung";
             this.dgvNguoiDung.ReadOnly = true;
             this.dgvNguoiDung.Size = new System.Drawing.Size(894, 342);
             this.dgvNguoiDung.TabIndex = 0;
             this.dgvNguoiDung.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNguoiDung_CellClick);
-            // 
-            // HoTen
-            // 
-            this.HoTen.DataPropertyName = "HoTen";
-            this.HoTen.HeaderText = "Họ Tên";
-            this.HoTen.Name = "HoTen";
-            this.HoTen.ReadOnly = true;
-            this.HoTen.Width = 200;
-            // 
-            // UserName
-            // 
-            this.UserName.DataPropertyName = "UserName";
-            this.UserName.HeaderText = "Tên đăng nhập";
-            this.UserName.Name = "UserName";
-            this.UserName.ReadOnly = true;
-            this.UserName.Width = 200;
-            // 
-            // IsAdmin
-            // 
-            this.IsAdmin.DataPropertyName = "IsAdmin";
-            this.IsAdmin.HeaderText = "Là quản lý";
-            this.IsAdmin.Name = "IsAdmin";
-            this.IsAdmin.ReadOnly = true;
-            // 
-            // NgayTao
-            // 
-            this.NgayTao.DataPropertyName = "NgayTao";
-            this.NgayTao.HeaderText = "Ngày tạo";
-            this.NgayTao.Name = "NgayTao";
-            this.NgayTao.ReadOnly = true;
-            this.NgayTao.Width = 150;
             // 
             // label1
             // 
@@ -173,9 +144,9 @@
             this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoa.Image = global::QLKS.Properties.Resources.Delete;
             this.btnXoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXoa.Location = new System.Drawing.Point(284, 66);
+            this.btnXoa.Location = new System.Drawing.Point(216, 61);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(75, 39);
+            this.btnXoa.Size = new System.Drawing.Size(74, 39);
             this.btnXoa.TabIndex = 12;
             this.btnXoa.Text = "Xóa";
             this.btnXoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -187,11 +158,11 @@
             this.btnThemMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThemMoi.Image = global::QLKS.Properties.Resources.save__2_;
             this.btnThemMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThemMoi.Location = new System.Drawing.Point(166, 66);
+            this.btnThemMoi.Location = new System.Drawing.Point(113, 61);
             this.btnThemMoi.Name = "btnThemMoi";
-            this.btnThemMoi.Size = new System.Drawing.Size(101, 39);
+            this.btnThemMoi.Size = new System.Drawing.Size(74, 39);
             this.btnThemMoi.TabIndex = 10;
-            this.btnThemMoi.Text = "Thêm mới";
+            this.btnThemMoi.Text = "Thêm";
             this.btnThemMoi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnThemMoi.UseVisualStyleBackColor = true;
             this.btnThemMoi.Click += new System.EventHandler(this.btnThemMoi_Click);
@@ -201,14 +172,52 @@
             this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.Image = global::QLKS.Properties.Resources.save;
             this.btnLuu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLuu.Location = new System.Drawing.Point(74, 66);
+            this.btnLuu.Location = new System.Drawing.Point(15, 61);
             this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(71, 39);
+            this.btnLuu.Size = new System.Drawing.Size(74, 39);
             this.btnLuu.TabIndex = 9;
             this.btnLuu.Text = "Lưu";
             this.btnLuu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnLuu.UseVisualStyleBackColor = true;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
+            // HoTen
+            // 
+            this.HoTen.DataPropertyName = "HoTen";
+            this.HoTen.HeaderText = "Họ Tên";
+            this.HoTen.Name = "HoTen";
+            this.HoTen.ReadOnly = true;
+            this.HoTen.Width = 200;
+            // 
+            // IsAdmin
+            // 
+            this.IsAdmin.DataPropertyName = "IsAdmin";
+            this.IsAdmin.HeaderText = "Là quản lý";
+            this.IsAdmin.Name = "IsAdmin";
+            this.IsAdmin.ReadOnly = true;
+            // 
+            // PassWord
+            // 
+            this.PassWord.DataPropertyName = "Password";
+            this.PassWord.HeaderText = "Mật khẩu";
+            this.PassWord.Name = "PassWord";
+            this.PassWord.ReadOnly = true;
+            this.PassWord.Width = 150;
+            // 
+            // Username
+            // 
+            this.Username.DataPropertyName = "Username";
+            this.Username.HeaderText = "Tên đăng nhập";
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            // 
+            // NgayTao
+            // 
+            this.NgayTao.DataPropertyName = "NgayTao";
+            this.NgayTao.HeaderText = "Ngày tạo";
+            this.NgayTao.Name = "NgayTao";
+            this.NgayTao.ReadOnly = true;
+            this.NgayTao.Width = 150;
             // 
             // frmQuanLyNguoiDung
             // 
@@ -251,8 +260,9 @@
         private System.Windows.Forms.Label lblMaND;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.DataGridViewTextBoxColumn HoTen;
-        private System.Windows.Forms.DataGridViewTextBoxColumn UserName;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsAdmin;
+        private System.Windows.Forms.DataGridViewTextBoxColumn PassWord;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.DataGridViewTextBoxColumn NgayTao;
     }
 }

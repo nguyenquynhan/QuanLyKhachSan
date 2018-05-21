@@ -77,11 +77,11 @@ namespace QLKS
                 if (isSuccess)
                 {
                     LoadData();
-                    MessageBox.Show("Xóa thành công", "Thông báo");
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK);
                 }
                 else
                 {
-                    MessageBox.Show("Xóa dịch vụ bị lỗi, làm ơn thử lại!");
+                    MessageBox.Show("Xóa dịch vụ bị lỗi, làm ơn thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }    
         }
@@ -94,12 +94,12 @@ namespace QLKS
             btnSua.Enabled = true;
             if (txtTenDV.Text.Length == 0 || txtGia.Text.Length == 0)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!");
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if(IsNumber(txtGia.Text) == false)
             {
-                MessageBox.Show("Nhập giá dịch vụ không hợp lệ, vui lòng thử lại!");
+                MessageBox.Show("Giá dịch vụ không hợp lệ, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -135,16 +135,17 @@ namespace QLKS
                 LoadData();
                 ThemMoi();
                 //ReSelectDataGridview(selectedIndex);
-                MessageBox.Show("Lưu thành công");
+                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
+                btnThem.Enabled = true;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                txtTenDV.Enabled = txtGia.Enabled = false;
             }
             else
             {
-                MessageBox.Show("Lưu dịch vụ bị lỗi, vui lòng thử lại!");
+                MessageBox.Show("Lưu dịch vụ bị lỗi, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
-            txtTenDV.Enabled = txtGia.Enabled = false;
+           
         }
 
         private void dgvDSDV_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -195,7 +196,7 @@ namespace QLKS
             {
                 if (txtTimKiem.Text.Length == 0)
                 {
-                    //LoadData();
+                    LoadData();
                     return;
                 }
                 else
@@ -207,7 +208,7 @@ namespace QLKS
                     }
                     else
                     {
-                        MessageBox.Show("Điều kiện tìm kiếm không đúng,mã dịch vụ phải là kiểu số, vui lòng xem lại!");
+                        MessageBox.Show("Điều kiện tìm kiếm không đúng, mã dịch vụ phải là kiểu số, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtTimKiem.Text = null;
                     }
                 }
