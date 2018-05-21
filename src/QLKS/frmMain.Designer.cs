@@ -41,7 +41,9 @@
             this.qlNhanVienMenuItem = new System.Windows.Forms.MenuItem();
             this.qlThuePhongMenuItem = new System.Windows.Forms.MenuItem();
             this.baoCaoMenuItem = new System.Windows.Forms.MenuItem();
+            this.qlDanhSachHoaDonMenuItem = new System.Windows.Forms.MenuItem();
             this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.qlPhongMenuItem = new System.Windows.Forms.MenuItem();
             this.SuspendLayout();
             // 
             // mainMenu
@@ -88,7 +90,8 @@
             this.qlDichVuMenuItem,
             this.qlKhachHangMenuItem,
             this.qlNhanVienMenuItem,
-            this.qlThuePhongMenuItem});
+            this.qlThuePhongMenuItem,
+            this.qlPhongMenuItem});
             this.danhMucMenuItem.Text = "&Danh mục";
             // 
             // qlLoaiPhongMenuItem
@@ -99,16 +102,19 @@
             // qlDichVuMenuItem
             // 
             this.qlDichVuMenuItem.Index = 1;
+            this.qlDichVuMenuItem.Tag = "frmQuanLyDichVu";
             this.qlDichVuMenuItem.Text = "Quản lý dịch vụ";
             // 
             // qlKhachHangMenuItem
             // 
             this.qlKhachHangMenuItem.Index = 2;
+            this.qlKhachHangMenuItem.Tag = "frmQuanLyKhachSan";
             this.qlKhachHangMenuItem.Text = "Quản lý khách hàng";
             // 
             // qlNhanVienMenuItem
             // 
             this.qlNhanVienMenuItem.Index = 3;
+            this.qlNhanVienMenuItem.Tag = "frmQuanLyNhanVien";
             this.qlNhanVienMenuItem.Text = "Quản lý nhân viên";
             // 
             // qlThuePhongMenuItem
@@ -120,7 +126,15 @@
             // baoCaoMenuItem
             // 
             this.baoCaoMenuItem.Index = 2;
+            this.baoCaoMenuItem.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.qlDanhSachHoaDonMenuItem});
             this.baoCaoMenuItem.Text = "Báo cáo";
+            // 
+            // qlDanhSachHoaDonMenuItem
+            // 
+            this.qlDanhSachHoaDonMenuItem.Index = 0;
+            this.qlDanhSachHoaDonMenuItem.Tag = "frmDanhSachHoaDon";
+            this.qlDanhSachHoaDonMenuItem.Text = "Danh sách hóa đơn";
             // 
             // tabControlMain
             // 
@@ -135,6 +149,12 @@
             this.tabControlMain.Visible = false;
             this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.tabControlMain_SelectedIndexChanged);
             // 
+            // qlPhongMenuItem
+            // 
+            this.qlPhongMenuItem.Index = 5;
+            this.qlPhongMenuItem.Tag = "frmQuanLyPhong";
+            this.qlPhongMenuItem.Text = "Quản lý phòng";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -145,6 +165,7 @@
             this.Menu = this.mainMenu;
             this.Name = "frmMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "frmDanhSachHoaDon";
             this.Text = "Quản lý khách sạn";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmMain_Load);
@@ -166,6 +187,8 @@
         private System.Windows.Forms.MenuItem baoCaoMenuItem;
         private System.Windows.Forms.TabControl tabControlMain;
         private System.Windows.Forms.MenuItem qlThuePhongMenuItem;
+        private System.Windows.Forms.MenuItem qlDanhSachHoaDonMenuItem;
+        private System.Windows.Forms.MenuItem qlPhongMenuItem;
     }
 }
 

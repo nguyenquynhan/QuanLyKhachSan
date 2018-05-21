@@ -40,6 +40,17 @@ namespace QLKS.DAL
                               };
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);//excutenonquery thực thi , trả về true or false( thêm xóa xửa)
         }
-        
+
+        public List<ChiTietTienThuePhong> GetByMaTP(int MaTP)
+        {
+            List<ChiTietTienThuePhong> listChiTietDVTP = new List<ChiTietTienThuePhong>();
+            string sql = "SELECT * FROM ChiTietTienThuePhong WHERE MaTP=@MaTP";
+            SqlParameter[] pr ={
+                                   new SqlParameter("@MaTP",MaTP)
+                               };
+            SqlDataReader dr = _helper.ExcuteDataReader(sql, pr, CommandType.Text);
+            listChiTietDVTP = _helper.MapReaderToList<ChiTietTienThuePhong>(dr);
+            return listChiTietDVTP;
+        }
     }
 }

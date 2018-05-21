@@ -39,7 +39,18 @@ namespace QLKS.DAL
                               };
              return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);//excutenonquery thực thi , trả về true or false( thêm xóa xửa)
          }
-
+         public bool Update(ChiTietDichVuThuePhong CTDVTP)
+         {
+             string sql = "Update ChiTietDichVuThuePhong set (SoLuong = SoLuong + @SoLuong, ThanhTien = ThanhTien + @ThanhTien, NgaySua, NguoiSua";
+             SqlParameter[] pr ={
+                            
+                              new SqlParameter("@SoLuong", CTDVTP.SoLuong),
+                              new SqlParameter("@ThanhTien", CTDVTP.ThanhTien),
+                              new SqlParameter("@NgaySua", CTDVTP.NgaySua),
+                              new SqlParameter("@NguoiSua", CTDVTP.NguoiSua)
+                              };
+             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);//excutenonquery thực thi , trả về true or false( thêm xóa xửa)
+         }
          public List<ChiTietDichVuThuePhong> GetByMaTP(int MaTP)
          {
              List<ChiTietDichVuThuePhong> listChiTietDVTP = new List<ChiTietDichVuThuePhong>();
@@ -56,6 +67,15 @@ namespace QLKS.DAL
              string sql = "delete from ChiTietDichVuThuePhong where MaCTDVTP=@MaCTDV";
              SqlParameter[] pr ={
                                new SqlParameter ("@MaCTDV", MaCTDV)
+                               };
+             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+         }
+
+         public bool DeleteByMaTP(int MaTP)
+         {
+             string sql = "delete from ChiTietDichVuThuePhong where MaTP=@MaTP";
+             SqlParameter[] pr ={
+                               new SqlParameter ("@MaTP", MaTP)
                                };
              return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
          }

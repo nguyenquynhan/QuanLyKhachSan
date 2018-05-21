@@ -38,10 +38,19 @@ namespace QLKS.DAL
 
             return null;          
         }
+        public List<ThuePhong> GetAll()
+        {
+            List<ThuePhong> Listtp = new List<ThuePhong>();
+            string sql = "SELECT * from ThuePhong";
+            SqlDataReader dr = _helper.ExcuteDataReader(sql, null, CommandType.Text);
+            Listtp = _helper.MapReaderToList<ThuePhong>(dr);
+            _helper.DisConnect();
+            return Listtp;
+        }
         public ThuePhong GetThuePhongByMaPH(int MaPH)
         {
             ThuePhong Listtp = new ThuePhong();
-            string sql = "SELECT TP.*,KH.HoTen as TenKH from ThuePhong TP, KhachHang KH where MaPH=@SoPhong and  KH.MaKH =TP.MaKH and NgayTraPH is null";
+            string sql = "SELECT TP.*,KH.HoTen from ThuePhong TP, KhachHang KH where MaPH=@SoPhong and  KH.MaKH =TP.MaKH and NgayTraPH is null";
             SqlParameter[] pr ={new SqlParameter("@SoPhong",MaPH)};
             SqlDataReader dr = _helper.ExcuteDataReader(sql, pr, CommandType.Text);
             Listtp = _helper.MapReaderToList<ThuePhong>(dr).FirstOrDefault();
@@ -49,13 +58,31 @@ namespace QLKS.DAL
             return Listtp;
         }
 
+       
+        //Lay danh sach thue phong
+        public List<ThuePhong> GetHoaDonThuePhong()
+        {
+            List<ThuePhong> Listtp = new List<ThuePhong>();
+            string sql = @"select MaTP, SoLuongNguoi, TP.MaPH, LP.TenLoaiPH, KH.HoTen, NgayNhanPH, NgayTraPH, TongTienDV, TongTienPH, TongTien 
+                          from ThuePhong TP, LoaiPhong LP, Phong PH, KhachHang KH 
+                          where TP.MaPH = PH.MaPH and TP.MaKH = KH.MaKH and PH.MaLoaiPH = LP.MaLoaiPH 
+	                      and TP.NgayTraPH is not null order by NgayTraPH desc";
+            SqlDataReader dr = _helper.ExcuteDataReader(sql, null, CommandType.Text);
+            Listtp = _helper.MapReaderToList<ThuePhong>(dr);
+            _helper.DisConnect();
+            return Listtp;
+        }
+
+        //Update Thue Phong
         public bool UpdateThuePhong(ThuePhong TP)
         {
             SqlParameter[] pr = new SqlParameter[] { };
-            string sql = "UPDATE ThuePhong SET TongTien=@TongTien, NgayTraPH=@NgayTraPH, NguoiTao=@NguoiTao, NgaySua=@NgaySua, NguoiSua=@NguoiSua Where MaTP = @MaTP";
+            string sql = "UPDATE ThuePhong SET TongTien=@TongTien, TongTienPH = @TongTienPH, TongTienDV = @TongTienDV, NgayTraPH=@NgayTraPH, NguoiTao=@NguoiTao, NgaySua=@NgaySua, NguoiSua=@NguoiSua Where MaTP = @MaTP";
             pr = new SqlParameter[] {
                     new SqlParameter("@MaTP",TP.MaTP),
                     new SqlParameter("@TongTien",TP.TongTien),
+                     new SqlParameter("@TongTienPH",TP.TongTienPH),
+                      new SqlParameter("@TongTienDV",TP.TongTienDV),
                     new SqlParameter("@NgayTraPH",TP.NgayTraPH),
                     new SqlParameter("@NguoiTao", TP.NguoiTao),
                     new SqlParameter("@NgaySua",TP.NgaySua),
@@ -63,6 +90,13 @@ namespace QLKS.DAL
             };
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }
-
+        public bool Delete(int MaPH)
+        {
+            string sql = "delete ThuePhong where MaPH = @MaPH";
+            SqlParameter[] pr ={
+                               new SqlParameter ("@MaPH", MaPH)
+                               };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
     }
 }

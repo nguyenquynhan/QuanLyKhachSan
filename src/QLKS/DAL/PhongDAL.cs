@@ -44,6 +44,37 @@ namespace QLKS.DAL
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }
 
+        public bool Delete(int MaPH)
+        {
+            string sql = "delete Phong where MaPH = @MaPH";
+            SqlParameter[] pr ={
+                               new SqlParameter ("@MaPH", MaPH)
+                               };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
 
+        public bool Update(Phong ph)
+        {
+            string sql = "Update Phong set MaLoaiPH = @MaLoaiPH, NgaySua = @NgaySua, NguoiSua = @NguoiSua where MaPH=@MaPH";
+            SqlParameter[] pr = {
+                                new SqlParameter("@MaPH",ph.MaPH ),
+                                new SqlParameter("@MaLoaiPH",ph.MaLoaiPH ),
+                                new SqlParameter("@NgaySua", ph.NgaySua ),
+                                new SqlParameter("@NguoiSua", ph.NguoiSua)
+                              };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
+
+        public bool Create(Phong ph)
+        {
+            string sql = "Insert into Phong (MaPH, TenLoaiPH, NgayTao, NguoiTao) values (@MaPH, @TenLoaiPH, @NgayTao, @NguoiTao)";
+            SqlParameter[] pr = {
+                                 new SqlParameter("@MaPH",ph.MaPH ),
+                                new SqlParameter("@TenLoaiPH",ph.TenLoaiPH ),
+                                new SqlParameter("@NgaySua", ph.NgaySua ),
+                                new SqlParameter("@NguoiSua", ph.NguoiSua)
+                              };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
     }
 }

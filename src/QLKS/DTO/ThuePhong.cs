@@ -20,7 +20,7 @@ namespace QLKS.DTO
 
         public int SoLuongNguoi { get; set; }
 
-        public float? TongTien { get; set; }
+        public double? TongTien { get; set; }
 
         public DateTime? NgayTao { get; set; }
 
@@ -31,7 +31,13 @@ namespace QLKS.DTO
         public int NguoiSua { get; set; }
 
 
-        public string TenKH { get; set; }
+        public string HoTen { get; set; }
+
+        public string TenLoaiPH { get; set; }
+
+        public double? TongTienPH { get; set; }
+
+        public double? TongTienDV { get; set; }
 
     }
 

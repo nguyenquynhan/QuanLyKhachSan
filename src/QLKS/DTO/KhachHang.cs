@@ -22,8 +22,6 @@ namespace QLKS.DTO
 
         public string GioiTinh { get; set; }
 
-        public string Email { get; set; }
-
         public DateTime? NgayTao { get; set; }
 
         public int NguoiTao { get; set; }

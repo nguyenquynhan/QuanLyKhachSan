@@ -36,6 +36,42 @@ namespace QLKS.DAL
             return dv;
         }
 
+        //Create dich vu
+        public bool Create(DichVu dv)
+        {
+            string sql = "Insert into DichVu(TenDV, Gia, NgayTao, NguoiTao) values (@TenDV, @Gia, @NgayTao, @NguoiTao)";
+            SqlParameter[] pr = {
+                                new SqlParameter("@TenDV",dv.TenDV ),
+                                new SqlParameter("@Gia", dv.Gia ),
+                                new SqlParameter("@NgayTao", dv.NgayTao ),
+                                new SqlParameter("@NguoiTao", dv.NguoiTao )
+                               
+                              };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
+        //Update dịch vụ
+        public bool Update(DichVu dv)
+        {
+            string sql = "Update  DichVu set TenDV = @TenDV, Gia = @Gia, NgaySua = @NgaySua, NguoiSua = @NguoiSua where MaDV = @MaDV";
+            SqlParameter[] pr = {
+                                new SqlParameter("@MaDV",dv.MaDV ),
+                                new SqlParameter("@TenDV",dv.TenDV ),
+                                new SqlParameter("@Gia", dv.Gia ),
+                                new SqlParameter("@NgaySua", dv.NgaySua ),
+                                new SqlParameter("@NguoiSua", dv.NguoiSua ),
+                               
+                              };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
+
+        public bool Delete(int MaDV)
+        {
+            string sql = "delete DichVu where MaDV=@MaDV";
+            SqlParameter[] pr ={
+                               new SqlParameter ("@MaDV", MaDV)
+                               };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
        
     }
 }

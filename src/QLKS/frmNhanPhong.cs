@@ -20,6 +20,9 @@ namespace QLKS
         public Phong CurrentPhong {get; set;}
         public ThuePhong CurrentThuePhong { get; set; }
 
+        public bool XacNhan = false;
+
+      
         public frmNhanPhong()
         {
             InitializeComponent();
@@ -49,7 +52,7 @@ namespace QLKS
                 NgayNhanPH = dtpNgaynhan.Value,
                 SoLuongNguoi = (int) numSoLuongNguoi.Value,
                 NguoiTao=Program.CurrentUser.MaND,
-                TenKH = cbbKhachhang.SelectedText
+                HoTen = cbbKhachhang.SelectedText
                 
             };
 
@@ -58,7 +61,7 @@ namespace QLKS
             {
                 MessageBox.Show("Nhận phòng thành công");
                 _phongDAL.UpdateDangThue(thuePhong.MaPH);
-
+                XacNhan = true;
                 this.Close();
             }
             else

@@ -29,6 +29,16 @@ namespace QLKS.DAL
             return lp;
         }
 
+        public List<LoaiPhong> GetAll()
+        {
+
+            List<LoaiPhong> listlp = new List<LoaiPhong>();
+            string sql = " SELECT * FROM lOAIPHONG ";
+            SqlDataReader dr = _helper.ExcuteDataReader(sql, null, CommandType.Text);
+            listlp = _helper.MapReaderToList<LoaiPhong>(dr);
+            return listlp;
+        }
+
         
     }
 }

@@ -13,6 +13,7 @@ namespace QLKS.DTO
         public int MaLoaiPH { get; set; }
 
         public bool DangThue { get; set; }
+
         public string TenLoaiPH { get; set; }
 
         public DateTime? NgayTao { get; set; }

@@ -47,7 +47,7 @@ namespace QLKS
         private static void CurrentDomainOnUnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             string title = "Sorry, something went wrong.";
-            string detail = $"{((Exception)e.ExceptionObject).Message}\r\n{((Exception)e.ExceptionObject).StackTrace}";
+            string detail = ((Exception)e.ExceptionObject).Message + "\r\n" + ((Exception)e.ExceptionObject).StackTrace;
             new frmException(title, detail).ShowDialog();
         }
 
@@ -59,7 +59,7 @@ namespace QLKS
         private static void ApplicationThreadException(object sender, ThreadExceptionEventArgs e)
         {
             string title = "Sorry, something went wrong.";
-            string detail = $"{e.Exception.Message}\r\n{e.Exception.StackTrace}";
+            string detail = e.Exception.Message + "\r\n" + e.Exception.StackTrace;
             new frmException(title, detail).ShowDialog();
         }
     }

@@ -37,7 +37,8 @@ namespace QLKS
             LoadCbbDichVu();
             btnNhanPhong.Enabled = false;
             btnThemDichVu.Enabled = false;
-            btnXoaDichVu.Enabled = false; 
+            btnXoaDichVu.Enabled = false;
+            btnThanhToan.Enabled = false;
         }
         private void LoadDataPhong()
         {
@@ -50,7 +51,7 @@ namespace QLKS
             lblPhong.Text = this.SelectedThuePhong.MaPH.ToString();
             lblSoLuong.Text = this.SelectedThuePhong.SoLuongNguoi.ToString();
             lblNgayNhan.Text = this.SelectedThuePhong.NgayNhanPH.ToString();
-            lblKhachHang.Text = this.SelectedThuePhong.TenKH;
+            lblKhachHang.Text = this.SelectedThuePhong.HoTen;
 
         }
         private void btnNhanPhong_Click(object sender, EventArgs e)
@@ -63,15 +64,18 @@ namespace QLKS
                 frm.CurrentPhong = (Phong)dgvPhong.CurrentRow.DataBoundItem;
                 frm.ShowDialog();
                 SelectedThuePhong = frm.CurrentThuePhong;
-                LoadDataNhanPhong();
-                LoadDataPhong();
-                ReSelectDataGridview(selectedIndex);
-                LoadDataDgvTienPhong();
-                TinhTongTien();
-                btnNhanPhong.Enabled = false;
-                btnThemDichVu.Enabled = true;
-                btnXoaDichVu.Enabled = true;
-
+                if (frm.XacNhan == true)
+                {
+                    LoadDataNhanPhong();
+                    LoadDataPhong();
+                    ReSelectDataGridview(selectedIndex);
+                    LoadDataDgvTienPhong();
+                    TinhTongTien();
+                    btnNhanPhong.Enabled = false;
+                    btnThemDichVu.Enabled = true;
+                    btnXoaDichVu.Enabled = true;
+                    btnThanhToan.Enabled = true;
+                }
             }       
         }
 
@@ -108,6 +112,7 @@ namespace QLKS
                     LoadDataDgvDichVu();
                     LoadDataDgvTienPhong();
                     TinhTongTien();
+                    btnThanhToan.Enabled = true;
 
                 }
                 else
@@ -125,6 +130,7 @@ namespace QLKS
 
                     dgvDichVu.DataSource = null;
                     dgvTienThuePhong.DataSource = null;
+                    btnThanhToan.Enabled = false;
                 }
                 
             }
@@ -200,7 +206,11 @@ namespace QLKS
                 NgayTao = DateTime.Now,
                 NguoiTao = Program.CurrentUser.MaND 
             };
+            List<ChiTietDichVuThuePhong> ctdvtps = new List<ChiTietDichVuThuePhong>();
+            dgvDichVu.DataSource = ctdvtps;
+
             bool isSuccess = true;
+            
             isSuccess = _chitietDVTP.Create(chiTietDVTP);
             if (isSuccess)
             {
@@ -276,10 +286,13 @@ namespace QLKS
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
+
             //Update Thue phong
             bool isSuccessTP = true;
             SelectedThuePhong.NgayTraPH = DateTime.Now;
-            SelectedThuePhong.TongTien =float.Parse(lblTongTienThuePhong.Text.ToString());
+            SelectedThuePhong.TongTien = float.Parse(lblTongTienThuePhong.Text.ToString());
+            SelectedThuePhong.TongTienPH = float.Parse(lblTienPhong.Text.ToString());
+            SelectedThuePhong.TongTienDV = float.Parse(lblTienDichVu.Text.ToString());
             SelectedThuePhong.NgaySua = DateTime.Now;
             SelectedThuePhong.NguoiSua = Program.CurrentUser.MaND;
             isSuccessTP = _thuePhonDAL.UpdateThuePhong(SelectedThuePhong);

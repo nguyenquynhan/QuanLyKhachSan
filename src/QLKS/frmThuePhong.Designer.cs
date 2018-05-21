@@ -37,7 +37,6 @@
             this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Gia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnNhanPhong = new System.Windows.Forms.Button();
             this.cbbDichVu = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnThemDichVu = new System.Windows.Forms.Button();
@@ -53,7 +52,6 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblTienPhong = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnThanhToan = new System.Windows.Forms.Button();
             this.lblTienDichVu = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lblTongTienThuePhong = new System.Windows.Forms.Label();
@@ -64,6 +62,8 @@
             this.lblSoLuong = new System.Windows.Forms.Label();
             this.txtSoLuongDV = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnThanhToan = new System.Windows.Forms.Button();
+            this.btnNhanPhong = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDichVu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTienThuePhong)).BeginInit();
@@ -158,16 +158,6 @@
             this.ThanhTien.Name = "ThanhTien";
             this.ThanhTien.ReadOnly = true;
             this.ThanhTien.Width = 150;
-            // 
-            // btnNhanPhong
-            // 
-            this.btnNhanPhong.Location = new System.Drawing.Point(397, 12);
-            this.btnNhanPhong.Name = "btnNhanPhong";
-            this.btnNhanPhong.Size = new System.Drawing.Size(75, 23);
-            this.btnNhanPhong.TabIndex = 2;
-            this.btnNhanPhong.Text = "Nhận phòng";
-            this.btnNhanPhong.UseVisualStyleBackColor = true;
-            this.btnNhanPhong.Click += new System.EventHandler(this.btnNhanPhong_Click);
             // 
             // cbbDichVu
             // 
@@ -307,17 +297,6 @@
             this.label7.TabIndex = 12;
             this.label7.Text = "Tiền phòng:";
             // 
-            // btnThanhToan
-            // 
-            this.btnThanhToan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnThanhToan.Location = new System.Drawing.Point(745, 462);
-            this.btnThanhToan.Name = "btnThanhToan";
-            this.btnThanhToan.Size = new System.Drawing.Size(126, 67);
-            this.btnThanhToan.TabIndex = 14;
-            this.btnThanhToan.Text = "Thanh toán";
-            this.btnThanhToan.UseVisualStyleBackColor = true;
-            this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
-            // 
             // lblTienDichVu
             // 
             this.lblTienDichVu.AutoSize = true;
@@ -409,6 +388,33 @@
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 24;
             this.label3.Text = "Số lượng";
+            // 
+            // btnThanhToan
+            // 
+            this.btnThanhToan.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThanhToan.Image = global::QLKS.Properties.Resources.pay;
+            this.btnThanhToan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThanhToan.Location = new System.Drawing.Point(745, 466);
+            this.btnThanhToan.Name = "btnThanhToan";
+            this.btnThanhToan.Size = new System.Drawing.Size(126, 63);
+            this.btnThanhToan.TabIndex = 14;
+            this.btnThanhToan.Text = "Thanh toán";
+            this.btnThanhToan.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnThanhToan.UseVisualStyleBackColor = true;
+            this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
+            // 
+            // btnNhanPhong
+            // 
+            this.btnNhanPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNhanPhong.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnNhanPhong.Location = new System.Drawing.Point(397, 12);
+            this.btnNhanPhong.Name = "btnNhanPhong";
+            this.btnNhanPhong.Size = new System.Drawing.Size(88, 30);
+            this.btnNhanPhong.TabIndex = 2;
+            this.btnNhanPhong.Text = "Nhận phòng";
+            this.btnNhanPhong.UseVisualStyleBackColor = true;
+            this.btnNhanPhong.Click += new System.EventHandler(this.btnNhanPhong_Click);
             // 
             // frmThuePhong
             // 

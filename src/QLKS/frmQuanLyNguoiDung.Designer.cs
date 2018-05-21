@@ -40,10 +40,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.cheIsAdmin = new System.Windows.Forms.CheckBox();
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.btnThemMoi = new System.Windows.Forms.Button();
             this.lblMaND = new System.Windows.Forms.Label();
             this.btnXoa = new System.Windows.Forms.Button();
+            this.btnThemMoi = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNguoiDung)).BeginInit();
             this.SuspendLayout();
             // 
@@ -158,26 +158,6 @@
             this.cheIsAdmin.Text = "Là quản lý";
             this.cheIsAdmin.UseVisualStyleBackColor = true;
             // 
-            // btnLuu
-            // 
-            this.btnLuu.Location = new System.Drawing.Point(74, 66);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(75, 23);
-            this.btnLuu.TabIndex = 9;
-            this.btnLuu.Text = "Lưu";
-            this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
-            // 
-            // btnThemMoi
-            // 
-            this.btnThemMoi.Location = new System.Drawing.Point(167, 66);
-            this.btnThemMoi.Name = "btnThemMoi";
-            this.btnThemMoi.Size = new System.Drawing.Size(75, 23);
-            this.btnThemMoi.TabIndex = 10;
-            this.btnThemMoi.Text = "Thêm mới";
-            this.btnThemMoi.UseVisualStyleBackColor = true;
-            this.btnThemMoi.Click += new System.EventHandler(this.btnThemMoi_Click);
-            // 
             // lblMaND
             // 
             this.lblMaND.AutoSize = true;
@@ -190,13 +170,45 @@
             // 
             // btnXoa
             // 
-            this.btnXoa.Location = new System.Drawing.Point(261, 66);
+            this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoa.Image = global::QLKS.Properties.Resources.Delete;
+            this.btnXoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXoa.Location = new System.Drawing.Point(284, 66);
             this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Size = new System.Drawing.Size(75, 23);
+            this.btnXoa.Size = new System.Drawing.Size(75, 39);
             this.btnXoa.TabIndex = 12;
             this.btnXoa.Text = "Xóa";
+            this.btnXoa.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnXoa.UseVisualStyleBackColor = true;
             this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnThemMoi
+            // 
+            this.btnThemMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemMoi.Image = global::QLKS.Properties.Resources.save__2_;
+            this.btnThemMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThemMoi.Location = new System.Drawing.Point(166, 66);
+            this.btnThemMoi.Name = "btnThemMoi";
+            this.btnThemMoi.Size = new System.Drawing.Size(101, 39);
+            this.btnThemMoi.TabIndex = 10;
+            this.btnThemMoi.Text = "Thêm mới";
+            this.btnThemMoi.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnThemMoi.UseVisualStyleBackColor = true;
+            this.btnThemMoi.Click += new System.EventHandler(this.btnThemMoi_Click);
+            // 
+            // btnLuu
+            // 
+            this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuu.Image = global::QLKS.Properties.Resources.save;
+            this.btnLuu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLuu.Location = new System.Drawing.Point(74, 66);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(71, 39);
+            this.btnLuu.TabIndex = 9;
+            this.btnLuu.Text = "Lưu";
+            this.btnLuu.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
             // frmQuanLyNguoiDung
             // 
@@ -215,7 +227,6 @@
             this.Controls.Add(this.txtUserName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dgvNguoiDung);
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "frmQuanLyNguoiDung";
             this.Text = "Quản lý người dùng";
             this.Load += new System.EventHandler(this.frmQuanLyNguoiDung_Load);
