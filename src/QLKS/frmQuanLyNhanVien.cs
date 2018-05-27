@@ -126,7 +126,7 @@ namespace QLKS
             
             NhanVien nhanVien = new NhanVien()
             {
-
+                
                 HoTen = txtTenNV.Text,
                 NgaySinh = dtpNgaySinh.Value,
                 NgayLamViec = dtpNgayLamViec.Value,
@@ -192,6 +192,7 @@ namespace QLKS
             // Kiem tra co phai dang sua nhan vien hay k?
             else if (lblCheck.Text == "s")
             {
+                nhanVien.MaNV = int.Parse(txtMaNV.Text);
                 if (_nhanViens.Any(r => (r.HoTen != nhanVien.HoTen || r.CMND != nhanVien.CMND
                     || r.NgaySinh != nhanVien.NgaySinh || r.SDT != nhanVien.SDT || r.DiaChi != nhanVien.DiaChi
                     || r.Email != nhanVien.Email || r.NgayLamViec != nhanVien.NgayLamViec)

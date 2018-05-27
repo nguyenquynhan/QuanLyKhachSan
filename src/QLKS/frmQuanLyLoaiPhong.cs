@@ -151,7 +151,7 @@ namespace QLKS
             //Tao doi tuong phong
             LoaiPhong loaiPhong = new LoaiPhong()
             {
-               
+                
                 TenLoaiPH = txtTenLoaiPH.Text,
                 GiaGioDau = double.Parse(txtGiaGioDau.Text),
                 GiaGioHai = double.Parse(txtGiaGioHai.Text),
@@ -181,6 +181,7 @@ namespace QLKS
             // Kiem tra co phai dang sua loai phong hay k?
             else if (lblCheck.Text == "s")
             {
+               loaiPhong.MaLoaiPH = int.Parse(txtMaLoaiPH.Text);
                 if (_loaiPhongs.Any(r => (r.TenLoaiPH != loaiPhong.TenLoaiPH || r.GiaGioDau != loaiPhong.GiaGioDau
                     || r.GiaGioHai != loaiPhong.GiaGioHai || r.GiaGioTiepTheo != loaiPhong.GiaGioTiepTheo
                     || r.GiaTheoNgay != loaiPhong.GiaTheoNgay)

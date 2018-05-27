@@ -174,26 +174,21 @@ namespace QLKS
                             cttp2.ThanhTien = cttp2.SoLuong * cttp2.Gia;
                             tienPhongs.Add(cttp2);
                         }
-                        else
-                            if (soPhutThue >= (soPhutMotGio * 2 + minMinutetoHour))
-                            {
-                                double soLuongPhut = kqTimeSpan.TotalMinutes - 2 * soPhutMotGio;
-                                double soGio = soLuongPhut / soPhutMotGio;
-                                double soPhutLe = soLuongPhut % soPhutMotGio;
-                                if (soPhutLe >= 10) soGio++;
+                        
+                        if (soPhutThue >= (soPhutMotGio * 2 + minMinutetoHour))
+                        {
+                            double soLuongPhut = kqTimeSpan.TotalMinutes - 2 * soPhutMotGio;
+                            double soGio = soLuongPhut / soPhutMotGio;
+                            double soPhutLe = soLuongPhut % soPhutMotGio;
+                            if (soPhutLe >= 10) soGio++;
 
-                                ChiTietTienThuePhong cttp3 = new ChiTietTienThuePhong();
-                                cttp3.LoaiTienPhong = LoaiTienGioEnum.GioTiepTheo;
-                                cttp3.SoLuong = (int)soGio;
-                                cttp3.Gia = lp.GiaGioTiepTheo;
-                                cttp3.ThanhTien = cttp3.SoLuong * cttp3.Gia;
-                                tienPhongs.Add(cttp3);
-                            }
-                            else
-                                if(soPhutThue >= (soPhutMotGio * 24 + minMinutetoHour))
-                                {
-                                    rdbNgay.Checked = true;
-                                }
+                            ChiTietTienThuePhong cttp3 = new ChiTietTienThuePhong();
+                            cttp3.LoaiTienPhong = LoaiTienGioEnum.GioTiepTheo;
+                            cttp3.SoLuong = (int)soGio;
+                            cttp3.Gia = lp.GiaGioTiepTheo;
+                            cttp3.ThanhTien = cttp3.SoLuong * cttp3.Gia;
+                            tienPhongs.Add(cttp3);
+                        }
                     }
                     if(rdbNgay.Checked == true)
                     {
@@ -401,6 +396,7 @@ namespace QLKS
                 dgvDichVu.DataSource = null;
                 dgvTienThuePhong.DataSource = null;
                 SelectedThuePhong = null;
+                lblTienDichVu.Text = lblTienPhong.Text = lblTongTienThuePhong.Text = "0";
                 MessageBox.Show("Thanh toán thành công", "Thông báo", MessageBoxButtons.OK);
                 
             }
@@ -427,8 +423,6 @@ namespace QLKS
             else
                 return;
         }
-
-
         
     }
 }

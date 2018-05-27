@@ -43,9 +43,10 @@ namespace QLKS
             lblSL.Text = CurrentThuePhong.SoLuongNguoi.ToString();
             lblNgayN.Text = CurrentThuePhong.NgayNhanPH.ToString();
             lblNgayT.Text = CurrentThuePhong.NgayTraPH.ToString();
-            lblTongTienPH.Text = CurrentThuePhong.TongTienPH.ToString();
-            lblTongTienDV.Text = CurrentThuePhong.TongTienDV.ToString();
-            lblTongTien.Text = CurrentThuePhong.TongTien.ToString();
+            lblTongTienPH.Text = CurrentThuePhong.TongTienPH.HasValue ? CurrentThuePhong.TongTienPH.Value.ToString("#,##0") : "0";
+            lblTongTienDV.Text = CurrentThuePhong.TongTienDV.HasValue ? CurrentThuePhong.TongTienDV.Value.ToString("#,##0") : "0";
+            lblTongTien.Text = CurrentThuePhong.TongTien.Value.ToString("#,##0");
+            
         }
     }
 }

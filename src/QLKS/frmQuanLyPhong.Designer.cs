@@ -155,7 +155,7 @@
             this.LoaiPhong});
             this.dgvQLPhong.Location = new System.Drawing.Point(229, 18);
             this.dgvQLPhong.Name = "dgvQLPhong";
-            this.dgvQLPhong.Size = new System.Drawing.Size(280, 241);
+            this.dgvQLPhong.Size = new System.Drawing.Size(280, 477);
             this.dgvQLPhong.TabIndex = 37;
             this.dgvQLPhong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvQLPhong_CellClick);
             // 
@@ -185,7 +185,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 344);
+            this.ClientSize = new System.Drawing.Size(531, 497);
             this.Controls.Add(this.lblCheck);
             this.Controls.Add(this.dgvQLPhong);
             this.Controls.Add(this.btnReLoad);

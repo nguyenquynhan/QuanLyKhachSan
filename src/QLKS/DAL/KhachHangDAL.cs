@@ -77,7 +77,7 @@ namespace QLKS.DAL
         //Create khach hang
         public bool Create(KhachHang kh)
         {
-            string sql = "Insert into KhachHang(HoTen, NgaySinh, SDT, CMND, DiaChi, GioiTinh, NgayTao, NguoiTao) values (@HoTen, @NgaySinh, @SDT, @CMND, @DiaChi, @GioiTinh, @NgayTao, @NguoiTao)";
+            string sql = "Insert into KhachHang(HoTen, NgaySinh, SDT, CMND, DiaChi, GioiTinh, NgayTao, NguoiTao, DaXoa) values (@HoTen, @NgaySinh, @SDT, @CMND, @DiaChi, @GioiTinh, @NgayTao, @NguoiTao, @DaXoa)";
             SqlParameter[] pr = {
                                 new SqlParameter("@HoTen",kh.HoTen ),
                                 new SqlParameter("@NgaySinh",kh.NgaySinh ),
@@ -86,7 +86,8 @@ namespace QLKS.DAL
                                 new SqlParameter("@DiaChi",kh.DiaChi ),
                                 new SqlParameter("@GioiTinh", kh.GioiTinh ),
                                 new SqlParameter("@NgayTao", kh.NgayTao ),
-                                new SqlParameter("@NguoiTao", kh.NguoiTao)
+                                new SqlParameter("@NguoiTao", kh.NguoiTao),
+                                new SqlParameter("@DaXoa", kh.DaXoa)
                               };
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }

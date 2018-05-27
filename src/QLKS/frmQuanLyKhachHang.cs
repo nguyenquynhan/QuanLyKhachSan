@@ -120,7 +120,7 @@ namespace QLKS
             //Tao doi tuong khach hang
             KhachHang khachHang = new KhachHang()
             {
-               
+                  
                 HoTen = txtTenKH.Text,
                 NgaySinh = dtpNgaySinh.Value,
                 SDT = txtSDT.Text,
@@ -179,7 +179,7 @@ namespace QLKS
             // Kiem tra co phai dang sua khach hang hay k?
             else if (lblCheck.Text == "s")
             {
-
+                khachHang.MaKH = int.Parse(txtMaKH.Text);
                 if (_khachHangs.Any(r => (r.HoTen != khachHang.HoTen || r.CMND != khachHang.CMND
                     || r.NgaySinh != khachHang.NgaySinh || r.SDT != khachHang.SDT || r.DiaChi != khachHang.DiaChi
                     || r.GioiTinh != khachHang.GioiTinh)

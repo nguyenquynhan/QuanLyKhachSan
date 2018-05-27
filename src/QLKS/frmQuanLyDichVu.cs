@@ -114,6 +114,7 @@ namespace QLKS
             //Tao doi tuong dich vu
             DichVu dichVu= new DichVu()
             {
+               
                 TenDV = txtTenDV.Text,
                 Gia = Decimal.Parse(txtGia.Text)
             };
@@ -140,6 +141,7 @@ namespace QLKS
             // Kiem tra co phai dang sua kdich vu hay k?
             else if (lblCheck.Text == "s")
             {
+                dichVu.MaDV = int.Parse(txtMaDV.Text);
                 if (_dichVus.Any(r => (r.TenDV != dichVu.TenDV || r.Gia != dichVu.Gia)
                    && r.MaDV == dichVu.MaDV))
                 {

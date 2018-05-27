@@ -33,15 +33,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.dgvDSHD = new System.Windows.Forms.DataGridView();
-            this.MaTP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenLoaiPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayNhanPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayTraPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TongTienPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TongTienDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TongTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtTimKiem = new System.Windows.Forms.TextBox();
@@ -51,6 +42,15 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnTimKiem = new System.Windows.Forms.Button();
+            this.MaTP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenLoaiPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenKH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayNhanPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayTraPH = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TongTienPhong = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TongTienDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TongTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSHD)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,79 +81,6 @@
             this.dgvDSHD.Size = new System.Drawing.Size(585, 261);
             this.dgvDSHD.TabIndex = 8;
             this.dgvDSHD.DoubleClick += new System.EventHandler(this.dgvDSHD_DoubleClick);
-            // 
-            // MaTP
-            // 
-            this.MaTP.DataPropertyName = "MaTP";
-            this.MaTP.HeaderText = "Mã thuê phòng";
-            this.MaTP.Name = "MaTP";
-            this.MaTP.ReadOnly = true;
-            this.MaTP.Width = 110;
-            // 
-            // MaPH
-            // 
-            this.MaPH.DataPropertyName = "MaPH";
-            this.MaPH.HeaderText = "Mã phòng";
-            this.MaPH.Name = "MaPH";
-            this.MaPH.ReadOnly = true;
-            this.MaPH.Width = 90;
-            // 
-            // TenLoaiPH
-            // 
-            this.TenLoaiPH.DataPropertyName = "TenLoaiPH";
-            this.TenLoaiPH.HeaderText = "Loại phòng";
-            this.TenLoaiPH.Name = "TenLoaiPH";
-            this.TenLoaiPH.ReadOnly = true;
-            this.TenLoaiPH.Width = 90;
-            // 
-            // TenKH
-            // 
-            this.TenKH.DataPropertyName = "HoTen";
-            this.TenKH.HeaderText = "Khách hàng";
-            this.TenKH.Name = "TenKH";
-            this.TenKH.ReadOnly = true;
-            this.TenKH.Width = 140;
-            // 
-            // NgayNhanPH
-            // 
-            this.NgayNhanPH.DataPropertyName = "NgayNhanPH";
-            this.NgayNhanPH.HeaderText = "NgayNhanPH";
-            this.NgayNhanPH.Name = "NgayNhanPH";
-            this.NgayNhanPH.ReadOnly = true;
-            // 
-            // NgayTraPH
-            // 
-            this.NgayTraPH.DataPropertyName = "NgayTraPH";
-            this.NgayTraPH.HeaderText = "NgayTraPH";
-            this.NgayTraPH.Name = "NgayTraPH";
-            this.NgayTraPH.ReadOnly = true;
-            // 
-            // TongTienPhong
-            // 
-            this.TongTienPhong.DataPropertyName = "TongTienPH";
-            dataGridViewCellStyle2.Format = "#,###";
-            this.TongTienPhong.DefaultCellStyle = dataGridViewCellStyle2;
-            this.TongTienPhong.HeaderText = "TongTienPH (VNĐ)";
-            this.TongTienPhong.Name = "TongTienPhong";
-            this.TongTienPhong.ReadOnly = true;
-            // 
-            // TongTienDichVu
-            // 
-            this.TongTienDichVu.DataPropertyName = "TongTienDV";
-            dataGridViewCellStyle3.Format = "#,###";
-            this.TongTienDichVu.DefaultCellStyle = dataGridViewCellStyle3;
-            this.TongTienDichVu.HeaderText = "TongTienDV (VNĐ)";
-            this.TongTienDichVu.Name = "TongTienDichVu";
-            this.TongTienDichVu.ReadOnly = true;
-            // 
-            // TongTien
-            // 
-            this.TongTien.DataPropertyName = "TongTien";
-            dataGridViewCellStyle4.Format = "N0";
-            this.TongTien.DefaultCellStyle = dataGridViewCellStyle4;
-            this.TongTien.HeaderText = "TongTien (VNĐ)";
-            this.TongTien.Name = "TongTien";
-            this.TongTien.ReadOnly = true;
             // 
             // label4
             // 
@@ -236,6 +163,78 @@
             this.btnTimKiem.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnTimKiem.UseVisualStyleBackColor = true;
             this.btnTimKiem.Click += new System.EventHandler(this.btnTimKiem_Click);
+            // 
+            // MaTP
+            // 
+            this.MaTP.DataPropertyName = "MaTP";
+            this.MaTP.HeaderText = "Mã thuê phòng";
+            this.MaTP.Name = "MaTP";
+            this.MaTP.ReadOnly = true;
+            // 
+            // MaPH
+            // 
+            this.MaPH.DataPropertyName = "MaPH";
+            this.MaPH.HeaderText = "Mã phòng";
+            this.MaPH.Name = "MaPH";
+            this.MaPH.ReadOnly = true;
+            this.MaPH.Width = 80;
+            // 
+            // TenLoaiPH
+            // 
+            this.TenLoaiPH.DataPropertyName = "TenLoaiPH";
+            this.TenLoaiPH.HeaderText = "Loại phòng";
+            this.TenLoaiPH.Name = "TenLoaiPH";
+            this.TenLoaiPH.ReadOnly = true;
+            this.TenLoaiPH.Width = 90;
+            // 
+            // TenKH
+            // 
+            this.TenKH.DataPropertyName = "HoTen";
+            this.TenKH.HeaderText = "Khách hàng";
+            this.TenKH.Name = "TenKH";
+            this.TenKH.ReadOnly = true;
+            this.TenKH.Width = 140;
+            // 
+            // NgayNhanPH
+            // 
+            this.NgayNhanPH.DataPropertyName = "NgayNhanPH";
+            this.NgayNhanPH.HeaderText = "NgayNhanPH";
+            this.NgayNhanPH.Name = "NgayNhanPH";
+            this.NgayNhanPH.ReadOnly = true;
+            // 
+            // NgayTraPH
+            // 
+            this.NgayTraPH.DataPropertyName = "NgayTraPH";
+            this.NgayTraPH.HeaderText = "NgayTraPH";
+            this.NgayTraPH.Name = "NgayTraPH";
+            this.NgayTraPH.ReadOnly = true;
+            // 
+            // TongTienPhong
+            // 
+            this.TongTienPhong.DataPropertyName = "TongTienPH";
+            dataGridViewCellStyle2.Format = "#,##0";
+            this.TongTienPhong.DefaultCellStyle = dataGridViewCellStyle2;
+            this.TongTienPhong.HeaderText = "TongTienPH (VNĐ)";
+            this.TongTienPhong.Name = "TongTienPhong";
+            this.TongTienPhong.ReadOnly = true;
+            // 
+            // TongTienDichVu
+            // 
+            this.TongTienDichVu.DataPropertyName = "TongTienDV";
+            dataGridViewCellStyle3.Format = "#,##0";
+            this.TongTienDichVu.DefaultCellStyle = dataGridViewCellStyle3;
+            this.TongTienDichVu.HeaderText = "TongTienDV (VNĐ)";
+            this.TongTienDichVu.Name = "TongTienDichVu";
+            this.TongTienDichVu.ReadOnly = true;
+            // 
+            // TongTien
+            // 
+            this.TongTien.DataPropertyName = "TongTien";
+            dataGridViewCellStyle4.Format = "#,##0";
+            this.TongTien.DefaultCellStyle = dataGridViewCellStyle4;
+            this.TongTien.HeaderText = "TongTien (VNĐ)";
+            this.TongTien.Name = "TongTien";
+            this.TongTien.ReadOnly = true;
             // 
             // frmDanhSachHoaDon
             // 
