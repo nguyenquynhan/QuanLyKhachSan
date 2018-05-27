@@ -14,7 +14,7 @@ namespace QLKS
 {
     public partial class frmQuanLyNhanVien : frmMDIChild
     {
-        List<NhanVien> nhanViens;
+        List<NhanVien> _nhanViens;
         NhanVienDAL _nhanVienDAL = new NhanVienDAL();
         public frmQuanLyNhanVien()
         {
@@ -31,11 +31,12 @@ namespace QLKS
         public void LoadData()
         {
 
-            nhanViens = _nhanVienDAL.GetAll();
-            dgvNhanVien.DataSource = nhanViens;
+            _nhanViens = _nhanVienDAL.GetAllExisting();
+            dgvNhanVien.DataSource = _nhanViens;
             lblCheck.Text = "t";
             //ReSelectDataGridview(0);
             ThemMoi();
+            cbbTimKiemTheo.Text = "Mã nhân viên";
             btnLuu.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
             txtMaNV.Enabled = txtCMND.Enabled = txtDiaChi.Enabled = txtSDT.Enabled = txtTenNV.Enabled = dtpNgaySinh.Enabled = cbbGioiTinh.Enabled = txtEmail.Enabled = dtpNgayLamViec.Enabled = false;
         }
@@ -98,16 +99,22 @@ namespace QLKS
                                     MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                int maNV = int.Parse(txtMaNV.Text);
-                bool isSuccess = _nhanVienDAL.Delete(maNV);
-                if (isSuccess)
+
+                NhanVien nhanVien = new NhanVien()
                 {
+                    MaNV = int.Parse(txtMaNV.Text),
+                    NgaySua = DateTime.Today,
+                    NguoiSua = Program.CurrentUser.MaND
+                };
+                bool isSuccess = _nhanVienDAL.UpdateXoaForQLNhanVien(nhanVien);
+                if (isSuccess)
+                {    
+                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK);
                     LoadData();
-                    MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK,MessageBoxIcon.Information);
                 }
                 else
                 {
-                    MessageBox.Show("Xóa nhân viên bị lỗi, vui lòng thử lại!","Thông báo", MessageBoxButtons.OK);
+                    MessageBox.Show("Xóa nhân viên bị lỗi, vui lòng thử lại!","Lỗi", MessageBoxButtons.OK);
                 }
             }    
         }
@@ -130,6 +137,7 @@ namespace QLKS
                 //GioiTinh = (string)cbbGioiTinh.SelectedValue,
 
             };
+            _nhanViens = _nhanVienDAL.GetAll();
             if ( cbbGioiTinh.SelectedValue == null)
                 nhanVien.GioiTinh = "Nam";
             else
@@ -138,6 +146,7 @@ namespace QLKS
             // Kiem tra co phai dang them nhan vien hay k?
             if (lblCheck.Text == "t")
             {
+                
                 if (txtTenNV.Text.Length == 0 || txtSDT.Text.Length == 0 || txtCMND.Text.Length == 0)
                 {
                     MessageBox.Show("Bạn cần nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -145,8 +154,36 @@ namespace QLKS
                     btnSua.Enabled = false;
                     return;
                 }
+                else if (IsNumber(txtCMND.Text) == false && IsNumber(txtSDT.Text) == false)
+                {
+                    MessageBox.Show("Số CMND và số điện thoại không hợp lệ, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if (IsNumber(txtSDT.Text) == false)
+                {
+                    MessageBox.Show("Số điện thoại không hợp lệ, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if (IsNumber(txtCMND.Text) == false)
+                {
+                    MessageBox.Show("Số CMND không hợp lệ, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else if ((dtpNgayLamViec.Value.Year -dtpNgaySinh.Value.Year) < 18)
+                {
+                    MessageBox.Show("Ngày làm việc không hợp lệ, nhân viên này chưa đủ 18 tuổi, vui lòng xem lại ngày làm việc hoặc ngày sinh!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                if (_nhanViens.Any(r => r.HoTen == nhanVien.HoTen && r.CMND == nhanVien.CMND))//Kiem tra nhan vien nay da tung ton tai thi cap nhat DaXoa = 0
+                {
+                    nhanVien.NgaySua = DateTime.Today;
+                    nhanVien.NguoiSua = Program.CurrentUser.MaND;
+                    isSuccess = _nhanVienDAL.UpdateForQLNhanVien(nhanVien);
+                }
                 else
                 {
+                    nhanVien.DaXoa = false;
                     nhanVien.NgayTao = DateTime.Today;
                     nhanVien.NguoiTao = Program.CurrentUser.MaND;
                     isSuccess = _nhanVienDAL.Create(nhanVien);
@@ -155,27 +192,40 @@ namespace QLKS
             // Kiem tra co phai dang sua nhan vien hay k?
             else if (lblCheck.Text == "s")
             {
-                nhanVien.MaNV = int.Parse(txtMaNV.Text);
-                nhanVien.NgaySua = DateTime.Today;
-                nhanVien.NguoiSua = Program.CurrentUser.MaND;
-                isSuccess = _nhanVienDAL.Update(nhanVien);
+                if (_nhanViens.Any(r => (r.HoTen != nhanVien.HoTen || r.CMND != nhanVien.CMND
+                    || r.NgaySinh != nhanVien.NgaySinh || r.SDT != nhanVien.SDT || r.DiaChi != nhanVien.DiaChi
+                    || r.Email != nhanVien.Email || r.NgayLamViec != nhanVien.NgayLamViec)
+                    && r.MaNV == nhanVien.MaNV))//Kiem tra neu khong sua gi het nhung van nhan luu
+                {
+
+                    nhanVien.MaNV = int.Parse(txtMaNV.Text);
+                    nhanVien.NgaySua = DateTime.Today;
+                    nhanVien.NguoiSua = Program.CurrentUser.MaND;
+                    isSuccess = _nhanVienDAL.Update(nhanVien);
+                  
+                }
+                else
+                {
+                    return;
+                }
 
             }
             int selectedIndex;
             if (isSuccess)
             {
+                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
                 selectedIndex = dgvNhanVien.CurrentRow.Index;
                 LoadData();
                 ThemMoi();
                // ReSelectDataGridview(selectedIndex);
-                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
+                btnThem.Enabled = true;
+                txtCMND.Enabled = txtDiaChi.Enabled = txtSDT.Enabled = txtTenNV.Enabled = dtpNgaySinh.Enabled = cbbGioiTinh.Enabled = txtEmail.Enabled = dtpNgayLamViec.Enabled = false;
             }
             else
             {
-                MessageBox.Show("Lưu khách hàng bị lỗi, làm ơn thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lưu khách hàng bị lỗi, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            btnThem.Enabled = true;
-            txtCMND.Enabled = txtDiaChi.Enabled = txtSDT.Enabled = txtTenNV.Enabled = dtpNgaySinh.Enabled = cbbGioiTinh.Enabled = txtEmail.Enabled = dtpNgayLamViec.Enabled = false;
+           
         }
 
         //selected row[0].cell[0]
@@ -196,9 +246,7 @@ namespace QLKS
         {
             if (dgvNhanVien == null) return;
             if (dgvNhanVien.CurrentRow.Selected)
-            {
-
-                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+            {              
                 NhanVien selected = (NhanVien)dgvNhanVien.CurrentRow.DataBoundItem;
                 txtMaNV.Text = selected.MaNV.ToString();
                 txtTenNV.Text = selected.HoTen;
@@ -209,17 +257,19 @@ namespace QLKS
                 txtSDT.Text = selected.SDT;
                 cbbGioiTinh.SelectedValue = selected.GioiTinh;
                 dtpNgaySinh.Value = (DateTime)selected.NgaySinh;
+                //Hieu chinh Enable cua cac nut lenh va object
+                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+                txtCMND.Enabled = txtDiaChi.Enabled = txtSDT.Enabled = txtTenNV.Enabled = dtpNgaySinh.Enabled = cbbGioiTinh.Enabled = txtEmail.Enabled = dtpNgayLamViec.Enabled = false;
+                btnLuu.Enabled = false;
             }
-            txtCMND.Enabled = txtDiaChi.Enabled = txtSDT.Enabled = txtTenNV.Enabled = dtpNgaySinh.Enabled = cbbGioiTinh.Enabled = txtEmail.Enabled = dtpNgayLamViec.Enabled = false;
-            btnLuu.Enabled = false;
+            
         }
 
         private void btnReload_Click(object sender, EventArgs e)
         {
             LoadData();
             LoadDataCbbGioiTinh();
-            //LoadDataCbbTimKiemTheo();
-            //cbbTimKiemTheo.Text = "Mã khách hàng";
+            btnThem.Enabled = true;
         }
 
         private void txttnv_TextChanged(object sender, EventArgs e)
@@ -228,7 +278,7 @@ namespace QLKS
             {
                 if (txtTimKiem.Text.Length == 0)
                 {
-                    //LoadData();
+                    LoadData();
                     return;
                 }
                 else
@@ -236,11 +286,11 @@ namespace QLKS
                     if (IsNumber(txtTimKiem.Text) == true)
                     {
                         int maNV = int.Parse(txtTimKiem.Text);
-                        dgvNhanVien.DataSource = nhanViens.Where(nv => nv.MaNV == maNV).ToList();
+                        dgvNhanVien.DataSource = _nhanViens.Where(nv => nv.MaNV == maNV).ToList();
                     }
                     else
                     {
-                        MessageBox.Show("Điều kiện tìm kiếm không đúng, mã nhân viên phải là kiểu số, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Điều kiện tìm kiếm không đúng, mã nhân viên phải là kiểu số, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtTimKiem.Text = null;
                     }
                 }
@@ -248,9 +298,8 @@ namespace QLKS
             else
             {
                 string tenNV = txtTimKiem.Text;
-                dgvNhanVien.DataSource = nhanViens.Where(nv => nv.HoTen.ToLower().Contains(tenNV.ToLower())
+                dgvNhanVien.DataSource = _nhanViens.Where(nv => nv.HoTen.ToLower().Contains(tenNV.ToLower())
                     || tenNV.ToLower().Contains(nv.HoTen.ToLower())).ToList();
-
             }
          }
         //Ham kiem tra kieu so
@@ -263,6 +312,11 @@ namespace QLKS
                 }
                 return true;
             }
+
+
+
+
+
 
 
     }

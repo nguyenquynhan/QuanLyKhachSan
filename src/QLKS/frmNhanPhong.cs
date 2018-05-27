@@ -40,9 +40,9 @@ namespace QLKS
 
         private void btnNhan_Click(object sender, EventArgs e)
         {
-            if(lblPhong.Text.Length == 0 || cbbKhachhang.SelectedValue == null )
+            if(lblPhong.Text.Length == 0 || cbbKhachhang.SelectedValue == null)
             {
-                MessageBox.Show("Bạn cần nhập đầy đủ thông tin", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bạn cần nhập đầy đủ thông tin", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             ThuePhong thuePhong = new ThuePhong()
@@ -52,7 +52,8 @@ namespace QLKS
                 NgayNhanPH = dtpNgaynhan.Value,
                 SoLuongNguoi = (int) numSoLuongNguoi.Value,
                 NguoiTao=Program.CurrentUser.MaND,
-                HoTen = cbbKhachhang.SelectedText
+                NgayTao = DateTime.Today,
+                HoTen = (string)cbbKhachhang.Text
                 
             };
 
@@ -66,7 +67,7 @@ namespace QLKS
             }
             else
             {
-                MessageBox.Show("Nhận phòng không thành công, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nhận phòng không thành công, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

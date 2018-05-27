@@ -410,7 +410,7 @@
             this.Controls.Add(this.txtMaKH);
             this.Controls.Add(this.label1);
             this.Name = "frmQuanLyKhachHang";
-            this.Text = "frmQuanLyKhachHang";
+            this.Text = "Quản lý khách hàng";
             this.Load += new System.EventHandler(this.frmQuanLyKhachHang_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachHang)).EndInit();
             this.ResumeLayout(false);

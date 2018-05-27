@@ -32,7 +32,7 @@ namespace QLKS
 
         private void LoadData()
         {
-            List<NguoiDung> nguoiDungs = _nguoiDungDAL.GetAll();
+            List<NguoiDung> nguoiDungs = _nguoiDungDAL.GetAllExisting();
             dgvNguoiDung.DataSource = nguoiDungs;
             
         }
@@ -41,7 +41,7 @@ namespace QLKS
         {
             cbbNhanVien.DisplayMember = "HoTen";
             cbbNhanVien.ValueMember = "MaNV";
-            cbbNhanVien.DataSource = _nhanVienDAL.GetAll();
+            cbbNhanVien.DataSource = _nhanVienDAL.GetAllExisting();
         }
 
         private void dgvNguoiDung_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -73,7 +73,7 @@ namespace QLKS
                 || txtUserName.Text.Length == 0
                 || (lblMaND.Text.Length == 0 && txtPassword.Text.Length == 0))
             {
-                MessageBox.Show("Bạn cần nhập đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bạn cần nhập đầy đủ thông tin.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -95,13 +95,21 @@ namespace QLKS
             if (lblMaND.Text.Length == 0)
             {
                 List<NguoiDung> nguoiDungs = _nguoiDungDAL.GetAll();
-                if(nguoiDungs.Any(r=> r.MaNV == nguoiDung.MaNV))
+                if(nguoiDungs.Any(r=> r.MaNV == nguoiDung.MaNV && r.DaXoa == false))
                 {
                     MessageBox.Show("Nhân viên này đã có tài khoản người dùng!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                if (nguoiDungs.Any(r => r.MaNV == nguoiDung.MaNV && r.DaXoa == true))
+                {
+                    
+                    nguoiDung.NgaySua = DateTime.Today;
+                    nguoiDung.NguoiSua = Program.CurrentUser.MaND;
+                    isSuccess = _nguoiDungDAL.UpdateForQLNguoiDung(nguoiDung);
+                }
                 else
                 {
+                    nguoiDung.DaXoa = false;
                     isSuccess = _nguoiDungDAL.Create(nguoiDung);
                 }
             }
@@ -112,13 +120,13 @@ namespace QLKS
 
             if (isSuccess)
             {
-                LoadData();
-                ThemMoi();
                 MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
+                LoadData();
+                ThemMoi();   
             }
             else
             {
-                MessageBox.Show("Lưu người dùng bị lỗi, làm ơn thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lưu người dùng bị lỗi, làm ơn thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -140,16 +148,22 @@ namespace QLKS
                                      MessageBoxButtons.YesNo);
                 if (confirmResult == DialogResult.Yes)
                 {
-                    int maND = int.Parse(lblMaND.Text);
-                    bool isSuccess = _nguoiDungDAL.Delete(maND);
+                    NguoiDung nguoiDung = new NguoiDung()
+                    {
+                        MaND = int.Parse(lblMaND.Text),
+                        NgaySua = DateTime.Today,
+                        NguoiSua = Program.CurrentUser.MaND
+                    };
+                    bool isSuccess = _nguoiDungDAL.UpdateXoaForQLNguoiDung(nguoiDung);
                     if (isSuccess)
                     {
+                        MessageBox.Show("Xóa thành công","Thông báo",MessageBoxButtons.OK);
                         LoadData();
                         ThemMoi();
                     }
                     else
                     {
-                        MessageBox.Show("Xóa người dùng bị lỗi, làm ơn thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Xóa người dùng bị lỗi, làm ơn thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 btnLuu.Enabled = true; 

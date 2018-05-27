@@ -44,17 +44,17 @@
             this.grbThongTinChiTietDV = new System.Windows.Forms.GroupBox();
             this.grbChucNang = new System.Windows.Forms.GroupBox();
             this.lblCheck = new System.Windows.Forms.Label();
+            this.btnThem = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.btnXoa = new System.Windows.Forms.Button();
+            this.btnLuu = new System.Windows.Forms.Button();
+            this.btnReLoad = new System.Windows.Forms.Button();
             this.grbDSDichVu = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cbbTimKiemTheo = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnThem = new System.Windows.Forms.Button();
-            this.btnSua = new System.Windows.Forms.Button();
-            this.btnXoa = new System.Windows.Forms.Button();
-            this.btnLuu = new System.Windows.Forms.Button();
-            this.btnReLoad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDSDV)).BeginInit();
             this.grbThongTinChiTietDV.SuspendLayout();
             this.grbChucNang.SuspendLayout();
@@ -157,6 +157,8 @@
             // 
             // dgvDSDV
             // 
+            this.dgvDSDV.AllowUserToAddRows = false;
+            this.dgvDSDV.AllowUserToDeleteRows = false;
             this.dgvDSDV.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvDSDV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaDV,
@@ -164,6 +166,7 @@
             this.DonGia});
             this.dgvDSDV.Location = new System.Drawing.Point(47, 83);
             this.dgvDSDV.Name = "dgvDSDV";
+            this.dgvDSDV.ReadOnly = true;
             this.dgvDSDV.Size = new System.Drawing.Size(340, 289);
             this.dgvDSDV.TabIndex = 12;
             this.dgvDSDV.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDSDV_CellClick);
@@ -173,18 +176,21 @@
             this.MaDV.DataPropertyName = "MaDV";
             this.MaDV.HeaderText = "Ma DV";
             this.MaDV.Name = "MaDV";
+            this.MaDV.ReadOnly = true;
             // 
             // TenDV
             // 
             this.TenDV.DataPropertyName = "TenDV";
             this.TenDV.HeaderText = "Ten DV";
             this.TenDV.Name = "TenDV";
+            this.TenDV.ReadOnly = true;
             // 
             // DonGia
             // 
             this.DonGia.DataPropertyName = "Gia";
             this.DonGia.HeaderText = "Don Gia";
             this.DonGia.Name = "DonGia";
+            this.DonGia.ReadOnly = true;
             // 
             // grbThongTinChiTietDV
             // 
@@ -228,68 +234,6 @@
             this.lblCheck.TabIndex = 2;
             this.lblCheck.Text = "Them hoac sua";
             this.lblCheck.Visible = false;
-            // 
-            // grbDSDichVu
-            // 
-            this.grbDSDichVu.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.grbDSDichVu.Controls.Add(this.label8);
-            this.grbDSDichVu.Controls.Add(this.cbbTimKiemTheo);
-            this.grbDSDichVu.Controls.Add(this.label1);
-            this.grbDSDichVu.Controls.Add(this.dgvDSDV);
-            this.grbDSDichVu.Controls.Add(this.txtTimKiem);
-            this.grbDSDichVu.Location = new System.Drawing.Point(443, 46);
-            this.grbDSDichVu.Name = "grbDSDichVu";
-            this.grbDSDichVu.Size = new System.Drawing.Size(435, 486);
-            this.grbDSDichVu.TabIndex = 15;
-            this.grbDSDichVu.TabStop = false;
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(181, 16);
-            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(93, 13);
-            this.label8.TabIndex = 9;
-            this.label8.Text = "Điều kiện tìm kiếm";
-            // 
-            // cbbTimKiemTheo
-            // 
-            this.cbbTimKiemTheo.FormattingEnabled = true;
-            this.cbbTimKiemTheo.Location = new System.Drawing.Point(47, 42);
-            this.cbbTimKiemTheo.Name = "cbbTimKiemTheo";
-            this.cbbTimKiemTheo.Size = new System.Drawing.Size(121, 21);
-            this.cbbTimKiemTheo.TabIndex = 5;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(440, 23);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(114, 13);
-            this.label5.TabIndex = 16;
-            this.label5.Text = "Danh sách dịch vụ";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(304, 23);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(68, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Chức năng";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(69, 23);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(104, 13);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Thông tin chi tiết";
             // 
             // btnThem
             // 
@@ -371,6 +315,68 @@
             this.btnReLoad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnReLoad.UseVisualStyleBackColor = false;
             this.btnReLoad.Click += new System.EventHandler(this.btnReLoad_Click);
+            // 
+            // grbDSDichVu
+            // 
+            this.grbDSDichVu.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.grbDSDichVu.Controls.Add(this.label8);
+            this.grbDSDichVu.Controls.Add(this.cbbTimKiemTheo);
+            this.grbDSDichVu.Controls.Add(this.label1);
+            this.grbDSDichVu.Controls.Add(this.dgvDSDV);
+            this.grbDSDichVu.Controls.Add(this.txtTimKiem);
+            this.grbDSDichVu.Location = new System.Drawing.Point(443, 46);
+            this.grbDSDichVu.Name = "grbDSDichVu";
+            this.grbDSDichVu.Size = new System.Drawing.Size(435, 486);
+            this.grbDSDichVu.TabIndex = 15;
+            this.grbDSDichVu.TabStop = false;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(181, 16);
+            this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(93, 13);
+            this.label8.TabIndex = 9;
+            this.label8.Text = "Điều kiện tìm kiếm";
+            // 
+            // cbbTimKiemTheo
+            // 
+            this.cbbTimKiemTheo.FormattingEnabled = true;
+            this.cbbTimKiemTheo.Location = new System.Drawing.Point(47, 42);
+            this.cbbTimKiemTheo.Name = "cbbTimKiemTheo";
+            this.cbbTimKiemTheo.Size = new System.Drawing.Size(121, 21);
+            this.cbbTimKiemTheo.TabIndex = 5;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(440, 23);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(114, 13);
+            this.label5.TabIndex = 16;
+            this.label5.Text = "Danh sách dịch vụ";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(304, 23);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(68, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Chức năng";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(69, 23);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(104, 13);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Thông tin chi tiết";
             // 
             // frmQuanLyDichVu
             // 

@@ -15,7 +15,6 @@ namespace QLKS
     public partial class frmQuanLyPhong : frmMDIChild
     {
         List<Phong> _phongs;
-        List<ThuePhong> _thuePhongs;
         PhongDAL _phongDAL = new PhongDAL();
         LoaiPhongDAL _loaiPhongDAL = new LoaiPhongDAL();
         ThuePhongDAL _thuePhongDAL = new ThuePhongDAL();
@@ -57,7 +56,7 @@ namespace QLKS
         {
             cbbLoaiPhong.ValueMember = "MaLoaiPH";
             cbbLoaiPhong.DisplayMember = "TenLoaiPH";
-            cbbLoaiPhong.DataSource = _loaiPhongDAL.GetAll();
+            cbbLoaiPhong.DataSource = _loaiPhongDAL.GetAllForLoaiPhong();
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -99,7 +98,7 @@ namespace QLKS
                 }
                 else
                 {
-                    MessageBox.Show("Xóa phòng bị lỗi, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Xóa phòng bị lỗi, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             } 
         }
@@ -107,17 +106,14 @@ namespace QLKS
         private void btnLuu_Click(object sender, EventArgs e)
         {
 
-            btnThem.Enabled = true;
-            btnXoa.Enabled = true;
-            btnSua.Enabled = true;
             if (txtSoPhong.Text.Length == 0)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
             else if (IsNumber(txtSoPhong.Text) == false)
             {
-                MessageBox.Show("Số phòng không hợp lệ, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Số phòng không hợp lệ, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -132,14 +128,20 @@ namespace QLKS
             if (lblCheck.Text == "t")
             {
                 _phongs = _phongDAL.GetAll();
-                if (_phongs.Any(r => r.MaPH == phong.MaPH))//Kiem tra phong nay da ton tai thi cap nhat DaXoa = 0
+                if (_phongs.Any(r => r.MaPH == phong.MaPH && r.DaXoa == true))//Kiem tra phong nay da ton tai thi cap nhat DaXoa = 0
                 {
                     phong.NgaySua = DateTime.Today;
                     phong.NguoiSua = Program.CurrentUser.MaND;
                     isSuccess = _phongDAL.UpdateForQLPhong(phong);
                 }
+                else if (_phongs.Any(r => r.MaPH == phong.MaPH && r.DaXoa == false))
+                {
+                    MessageBox.Show("Phòng này đã tồn tại, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 else
                 {
+                    phong.DaXoa = false;
                     phong.NgayTao = DateTime.Today;
                     phong.NguoiTao = Program.CurrentUser.MaND;
                     isSuccess = _phongDAL.Create(phong);
@@ -149,10 +151,16 @@ namespace QLKS
             // Kiem tra co phai dang sua phong hay k?
             else if (lblCheck.Text == "s")
             {
-                phong.MaPH = int.Parse(txtSoPhong.Text);
-                phong.NgaySua = DateTime.Today;
-                phong.NguoiSua = Program.CurrentUser.MaND;
-                isSuccess = _phongDAL.Update(phong);
+                if (_phongs.Any(r => r.MaLoaiPH != phong.MaLoaiPH
+                    && r.MaPH == phong.MaPH))//Kiem tra neu khong sua gi het nhung van nhan luu
+                {
+                    phong.MaPH = int.Parse(txtSoPhong.Text);
+                    phong.NgaySua = DateTime.Today;
+                    phong.NguoiSua = Program.CurrentUser.MaND;
+                    isSuccess = _phongDAL.Update(phong);
+                }
+                else
+                    return;
 
             }
             int selectedIndex;
@@ -163,17 +171,17 @@ namespace QLKS
                 ThemMoi();
                 //ReSelectDataGridview(selectedIndex);
                 MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
+                btnThem.Enabled = true;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                txtSoPhong.Enabled = false;
             }
             else
             {
-                MessageBox.Show("Lưu phòng bị lỗi, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lưu phòng bị lỗi, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
-            txtSoPhong.Enabled = false;
+           
         }
-
 
 
         //Ham kiem tra chuoi nhap vao la kieu so hay k
@@ -208,7 +216,7 @@ namespace QLKS
             txtSoPhong.Text = string.Empty;
             cbbLoaiPhong.SelectedValue = 1;
             cbbLoaiPhong.Enabled = false;
-            txtSoPhong.Enabled = true;
+            txtSoPhong.Enabled = btnThem.Enabled = true;
         }
         
     }

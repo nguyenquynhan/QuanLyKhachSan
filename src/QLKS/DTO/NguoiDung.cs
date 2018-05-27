@@ -28,6 +28,8 @@ namespace QLKS.DTO
 
         public string HoTen { get; set; }
 
+        public bool DaXoa { get; set; }
+
     }
 
 }

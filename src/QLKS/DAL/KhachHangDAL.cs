@@ -18,11 +18,21 @@ namespace QLKS.DAL
         {
             _helper = new  DataHelper();
         }
-        //Lay tat ca cac khach hang
+        //Lay tat ca cac khach hang (Bao gom dang ton tai va da xoa)
         public List<KhachHang> GetAll()
         {
             List<KhachHang> listkh = new List<KhachHang>();
             string sql="SELECT * FROM KhachHang";
+            SqlDataReader dr = _helper.ExcuteDataReader(sql, null, CommandType.Text);
+            listkh = _helper.MapReaderToList<KhachHang>(dr);
+            _helper.DisConnect();
+            return listkh;
+        }
+        //Lay tat ca cac khach hang dang ton tai
+        public List<KhachHang> GetAllExisting()
+        {
+            List<KhachHang> listkh = new List<KhachHang>();
+            string sql = "SELECT * FROM KhachHang where DaXoa = 0";
             SqlDataReader dr = _helper.ExcuteDataReader(sql, null, CommandType.Text);
             listkh = _helper.MapReaderToList<KhachHang>(dr);
             _helper.DisConnect();
@@ -98,6 +108,37 @@ namespace QLKS.DAL
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }
 
+
+        //Update DaXoa = 1 khi thuc hien xoa khach hang
+        public bool UpdateXoaForQLKhachHang(KhachHang kh)
+        {
+            SqlParameter[] pr = new SqlParameter[] { };
+            string sql = "UPDATE KhachHang SET DaXoa = 1, NgaySua=@NgaySua, NguoiSua=@NguoiSua Where MaKH = @MaKH";
+            pr = new SqlParameter[] {
+                    new SqlParameter("@MaKH",kh.MaKH),
+                    new SqlParameter("@NgaySua",kh.NgaySua),
+                    new SqlParameter("@NguoiSua", kh.NguoiSua)
+            };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
+
+        //Update DaXoa = 0 khi thuc hien them khach hang co tenNV va CMND da tung ton tai
+        public bool UpdateForQLKhachHang(KhachHang kh)
+        {
+            SqlParameter[] pr = new SqlParameter[] { };
+            string sql = "UPDATE KhachHang SET DaXoa = 0,  NgaySinh = @NgaySinh, SDT = @SDT, DiaChi = @DiaChi, GioiTinh = @GioiTinh, NgaySua = @NgaySua, NguoiSua = @NguoiSua Where TenKH = @TenKH and CMND = @CMND";
+            pr = new SqlParameter[] {
+                                new SqlParameter("@HoTen",kh.HoTen),
+                                new SqlParameter("@CMND",kh.CMND),
+                                new SqlParameter("@NgaySinh",kh.NgaySinh ),
+                                new SqlParameter("@SDT", kh.SDT ),            
+                                new SqlParameter("@DiaChi",kh.DiaChi ),
+                                new SqlParameter("@GioiTinh", kh.GioiTinh ),
+                                new SqlParameter("@NgaySua", kh.NgaySua ),
+                                new SqlParameter("@NguoiSua", kh.NguoiSua)
+            };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
         public bool Delete(int MaKH)
         {
             string sql = "delete KhachHang where MaKH=@MaKH";

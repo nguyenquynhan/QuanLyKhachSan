@@ -77,8 +77,13 @@ namespace QLKS
         {
             DateTime tuNgay = dtpTuNgay.Value.Date;
             DateTime denNgay = dtpDenNgay.Value.Date;
+            if (denNgay < tuNgay)
+            { 
+                MessageBox.Show("Điều kiện tìm kiếm không đúng, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             var thuePhongTemps = _thuePhongs.Where(tp => tp.NgayTraPH.Value.Date >= tuNgay && tp.NgayTraPH.Value.Date <= denNgay);
-           if (cbbTimKiemTheo.SelectedItem != null && txtTimKiem.Text.Length > 0)
+            if (cbbTimKiemTheo.SelectedItem != null && txtTimKiem.Text.Length > 0)
             {
                 // Tim theo ma thue phong
                 if (cbbTimKiemTheo.Text == "Mã thuê phòng")
@@ -90,8 +95,10 @@ namespace QLKS
                         }
                         else
                         {
-                            MessageBox.Show("Điều kiện tìm kiếm không đúng, mã thuê phòng phải là kiểu số, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Điều kiện tìm kiếm không đúng, mã thuê phòng phải là kiểu số, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             txtTimKiem.Text = null;
+                            LoadData();
+                            return;
                         }
                    
                 }
@@ -106,8 +113,10 @@ namespace QLKS
                         }
                         else
                         {
-                            MessageBox.Show("Điều kiện tìm kiếm không đúng,mã phòng phải là kiểu số, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("Điều kiện tìm kiếm không đúng,mã phòng phải là kiểu số, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             txtTimKiem.Text = null;
+                            LoadData();
+                            return;
                         }
                     
                 }

@@ -90,42 +90,64 @@ namespace QLKS
                 }
                 else
                 {
-                    MessageBox.Show("Xóa loại phòng bị lỗi, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Xóa loại phòng bị lỗi, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             } 
         }
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            btnThem.Enabled = true;
-            btnXoa.Enabled = true;
-            btnSua.Enabled = true;
             if (txtTenLoaiPH.Text.Length == 0 || txtGiaGioDau.Text.Length == 0 
                 || txtGiaGioHai.Text.Length == 0 || txtGiaGioTiepTheo.Text.Length == 0 || txtGiaTheoNgay.Text.Length == 0)
             {
-                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (IsNumber(txtGiaGioDau.Text) == false || int.Parse(txtGiaGioDau.Text) < 0)
+            //Kiem tra gia gio dau
+            if (IsNumber(txtGiaGioDau.Text) == false || Decimal.Parse(txtGiaGioDau.Text) < 0)
             {
-                MessageBox.Show("Giá giờ đầu không hợp lệ, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Giá giờ đầu không hợp lệ, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (IsNumber(txtGiaGioHai.Text) == false || int.Parse(txtGiaGioHai.Text) < 0)
+            else if ( Decimal.Parse(txtGiaGioDau.Text) < 0)
             {
-                MessageBox.Show("Giá giờ hai không hợp lệ, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Giá giờ đầu không hợp lệ, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (IsNumber(txtGiaGioTiepTheo.Text) == false || int.Parse(txtGiaGioTiepTheo.Text) < 0)
+            //Kiem tra gia gio hai
+            if (IsNumber(txtGiaGioHai.Text) == false || Decimal.Parse(txtGiaGioHai.Text) < 0)
             {
-                MessageBox.Show("Giá giờ tiếp theo không hợp lệ, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Giá giờ hai không hợp lệ, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            else if (IsNumber(txtGiaTheoNgay.Text) == false || int.Parse(txtGiaTheoNgay.Text) < 0)
+            else if (Decimal.Parse(txtGiaGioHai.Text) < 0)
             {
-                MessageBox.Show("Giá theo ngày không hợp lệ, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Giá giờ hai không hợp lệ, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
+            //Kiem tra gia gio tiep theo
+            if (IsNumber(txtGiaGioTiepTheo.Text) == false || Decimal.Parse(txtGiaGioTiepTheo.Text) < 0)
+            {
+                MessageBox.Show("Giá giờ tiếp theo không hợp lệ, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (Decimal.Parse(txtGiaGioTiepTheo.Text) < 0)
+            {
+                MessageBox.Show("Giá giờ tiếp theo không hợp lệ, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            //Kiem tra gia theo ngay
+            if (IsNumber(txtGiaTheoNgay.Text) == false || Decimal.Parse(txtGiaTheoNgay.Text) < 0)
+            {
+                MessageBox.Show("Giá theo ngày không hợp lệ, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            else if (Decimal.Parse(txtGiaTheoNgay.Text) < 0)
+            {
+                MessageBox.Show("Giá theo ngày không hợp lệ, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             //Tao doi tuong phong
             LoaiPhong loaiPhong = new LoaiPhong()
             {
@@ -149,7 +171,7 @@ namespace QLKS
                 }
                 else
                 {
-                   
+                    loaiPhong.DaXoa = false;
                     loaiPhong.NgayTao = DateTime.Today;
                     loaiPhong.NguoiTao = Program.CurrentUser.MaND;
                     isSuccess = _loaiPhongDAL.Create(loaiPhong);
@@ -159,29 +181,38 @@ namespace QLKS
             // Kiem tra co phai dang sua loai phong hay k?
             else if (lblCheck.Text == "s")
             {
-                loaiPhong.MaLoaiPH = int.Parse(txtMaLoaiPH.Text);
-                loaiPhong.NgaySua = DateTime.Today;
-                loaiPhong.NguoiSua = Program.CurrentUser.MaND;
-                isSuccess = _loaiPhongDAL.Update(loaiPhong);
+                if (_loaiPhongs.Any(r => (r.TenLoaiPH != loaiPhong.TenLoaiPH || r.GiaGioDau != loaiPhong.GiaGioDau
+                    || r.GiaGioHai != loaiPhong.GiaGioHai || r.GiaGioTiepTheo != loaiPhong.GiaGioTiepTheo
+                    || r.GiaTheoNgay != loaiPhong.GiaTheoNgay)
+                    && r.MaLoaiPH == loaiPhong.MaLoaiPH))
+                {
+                    loaiPhong.MaLoaiPH = int.Parse(txtMaLoaiPH.Text);
+                    loaiPhong.NgaySua = DateTime.Today;
+                    loaiPhong.NguoiSua = Program.CurrentUser.MaND;
+                    isSuccess = _loaiPhongDAL.Update(loaiPhong);
+                }
+                else
+                    return;
 
             }
             //int selectedIndex;
             if (isSuccess)
             {
                 //selectedIndex = dgvLoaiPhong.CurrentRow.Index;
+                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
                 LoadData();
                 ThemMoi();
                 //ReSelectDataGridview(selectedIndex);
-                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
+                btnThem.Enabled = true;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                txtMaLoaiPH.Enabled = false;
             }
             else
             {
-                MessageBox.Show("Lưu loại phòng bị lỗi, vui lòng thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lưu loại phòng bị lỗi, vui lòng thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
-            txtMaLoaiPH.Enabled = false;
+           
         }
 
         //Ham kiem tra chuoi nhap vao la kieu so hay k
@@ -218,6 +249,7 @@ namespace QLKS
         private void btnReLoad_Click(object sender, EventArgs e)
         {
             LoadData();
+            btnThem.Enabled = true;
         }
     }
 }

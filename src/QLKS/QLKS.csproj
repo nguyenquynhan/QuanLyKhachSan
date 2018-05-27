@@ -230,7 +230,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Utils\App.config">
+    <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>

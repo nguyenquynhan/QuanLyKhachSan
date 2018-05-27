@@ -11,5 +11,6 @@ namespace QLKS
         public static string GioDau = "Giờ đầu";
         public static string GioHai = "Giờ hai";
         public static string GioTiepTheo = "Giờ tiếp theo";
+        public static string GioTheoNgay = "Giờ theo ngày";
     }
 }

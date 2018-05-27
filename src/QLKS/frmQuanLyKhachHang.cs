@@ -14,7 +14,7 @@ namespace QLKS
 {
     public partial class frmQuanLyKhachHang : frmMDIChild
     {
-        List<KhachHang> khachHangs;
+        List<KhachHang> _khachHangs;
         KhachHangDAL _khachHangDAL = new KhachHangDAL();
         public frmQuanLyKhachHang()
         {
@@ -32,8 +32,8 @@ namespace QLKS
         //Load du lieu cho datagridview
         private void LoadData()
         {
-            khachHangs = _khachHangDAL.GetAll();
-            dgvKhachHang.DataSource = khachHangs;
+            _khachHangs = _khachHangDAL.GetAllExisting();
+            dgvKhachHang.DataSource = _khachHangs;
             lblCheck.Text = "t";
             //ReSelectDataGridview(0);
             ThemMoi();
@@ -95,25 +95,28 @@ namespace QLKS
                                      MessageBoxButtons.YesNo);
             if (confirmResult == DialogResult.Yes)
             {
-                int maKH = int.Parse(txtMaKH.Text);
-                bool isSuccess = _khachHangDAL.Delete(maKH);
+
+                KhachHang khachHang = new KhachHang()
+                {
+                    MaKH = int.Parse(txtMaKH.Text),
+                    NgaySua = DateTime.Today,
+                    NguoiSua = Program.CurrentUser.MaND
+                };
+                bool isSuccess = _khachHangDAL.UpdateXoaForQLKhachHang(khachHang);
                 if (isSuccess)
                 {
-                    LoadData();
                     MessageBox.Show("Xóa thành công", "Thông báo", MessageBoxButtons.OK);
+                    LoadData();
                 }
                 else
                 {
-                    MessageBox.Show("Xóa khách hàng bị lỗi, làm ơn thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Xóa khách hàng bị lỗi, làm ơn thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }    
         }
         //Luu
         private void btnLuu_Click(object sender, EventArgs e)
         {
-            btnThem.Enabled = true;
-            btnXoa.Enabled = true;
-            btnSua.Enabled = true;
             //Tao doi tuong khach hang
             KhachHang khachHang = new KhachHang()
             {
@@ -135,42 +138,79 @@ namespace QLKS
             {
                 if (txtTenKH.Text.Length == 0 || txtSDT.Text.Length == 0 || txtCMND.Text.Length == 0)
                 {
-                    MessageBox.Show("Bạn cần nhập đầy đủ thông tin!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Bạn cần nhập đầy đủ thông tin!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (IsNumber(txtCMND.Text) == false && IsNumber(txtSDT.Text) == false)
+                {
+                    MessageBox.Show("Số CMND và số điện thoại không hợp lệ, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if (IsNumber(txtSDT.Text) == false)
+                {
+                    MessageBox.Show("Số điện thoại không hợp lệ, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if(IsNumber(txtCMND.Text) == false)
+                {
+                    MessageBox.Show("Số CMND không hợp lệ, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                if(DateTime.Today.Year -dtpNgaySinh.Value.Year < 18)
+                {
+                    MessageBox.Show("Khách hàng chưa đủ tuổi để đăng kí, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 else
-                {
-                    khachHang.NgayTao = DateTime.Today;
-                    khachHang.NguoiTao = Program.CurrentUser.MaND;
-                    isSuccess = _khachHangDAL.Create(khachHang);
-                }
+                    if (_khachHangs.Any(r => r.HoTen == khachHang.HoTen && r.CMND == khachHang.CMND))//Kiem tra khach hang nay da tung ton tai thi cap nhat DaXoa = 0
+                    {
+                        khachHang.NgaySua = DateTime.Today;
+                        khachHang.NguoiSua = Program.CurrentUser.MaND;
+                        isSuccess = _khachHangDAL.UpdateForQLKhachHang(khachHang);
+                    }
+                    else
+                    {
+                        khachHang.DaXoa = false;
+                        khachHang.NgayTao = DateTime.Today;
+                        khachHang.NguoiTao = Program.CurrentUser.MaND;
+                        isSuccess = _khachHangDAL.Create(khachHang);
+                    }
             }
             // Kiem tra co phai dang sua khach hang hay k?
-            else if (lblCheck.Text == "s") 
+            else if (lblCheck.Text == "s")
             {
-                khachHang.MaKH = int.Parse(txtMaKH.Text);
-                khachHang.NgaySua = DateTime.Today;
-                khachHang.NguoiSua = Program.CurrentUser.MaND;
-                isSuccess = _khachHangDAL.Update(khachHang);
 
+                if (_khachHangs.Any(r => (r.HoTen != khachHang.HoTen || r.CMND != khachHang.CMND
+                    || r.NgaySinh != khachHang.NgaySinh || r.SDT != khachHang.SDT || r.DiaChi != khachHang.DiaChi
+                    || r.GioiTinh != khachHang.GioiTinh)
+                    && r.MaKH == khachHang.MaKH)) //Kiem tra neu khong sua gi het nhung van nhan luu
+                {
+                    khachHang.MaKH = int.Parse(txtMaKH.Text);
+                    khachHang.NgaySua = DateTime.Today;
+                    khachHang.NguoiSua = Program.CurrentUser.MaND;
+                    isSuccess = _khachHangDAL.Update(khachHang);
+                }
+                else
+                    return;
             }
             int selectedIndex;
             if (isSuccess)
             {
+                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
                 selectedIndex = dgvKhachHang.CurrentRow.Index;
                 LoadData();
                 ThemMoi();
                 ReSelectDataGridview(selectedIndex);
-                MessageBox.Show("Lưu thành công", "Thông báo", MessageBoxButtons.OK);
+                btnThem.Enabled = true;
+                btnSua.Enabled = true;
+                btnXoa.Enabled = true;
+                txtCMND.Enabled = txtDiaChi.Enabled = txtSDT.Enabled = txtTenKH.Enabled = dtpNgaySinh.Enabled = cbbGioiTinh.Enabled = false;
             }
             else
             {
-                MessageBox.Show("Lưu khách hàng bị lỗi, làm ơn thử lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Lưu khách hàng bị lỗi, làm ơn thử lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            btnThem.Enabled = true;
-            btnSua.Enabled = true;
-            btnXoa.Enabled = true;
-            txtCMND.Enabled = txtDiaChi.Enabled = txtSDT.Enabled = txtTenKH.Enabled = dtpNgaySinh.Enabled = cbbGioiTinh.Enabled = false;
+            
         }
         //selected row[0].cell[0]
         private void ReSelectDataGridview(int selectedIndex)
@@ -185,14 +225,13 @@ namespace QLKS
             dgvKhachHang.Rows[selectedIndex].Selected = true;
             dgvKhachHang.CurrentCell = dgvKhachHang.Rows[selectedIndex].Cells[0];
         }
+
         //Su kien Cell Click dgvKhachHang
         private void dgvKhachHang_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvKhachHang == null) return;
             if (dgvKhachHang.CurrentRow.Selected)
             {
-
-                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
                 KhachHang selected = (KhachHang)dgvKhachHang.CurrentRow.DataBoundItem;
                 txtMaKH.Text = selected.MaKH.ToString();
                 txtTenKH.Text = selected.HoTen;
@@ -201,48 +240,14 @@ namespace QLKS
                 txtSDT.Text = selected.SDT;
                 cbbGioiTinh.SelectedValue = selected.GioiTinh;
                 dtpNgaySinh.Value = (DateTime)selected.NgaySinh;
+
+                btnThem.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+                txtCMND.Enabled = txtDiaChi.Enabled = txtSDT.Enabled = txtTenKH.Enabled = dtpNgaySinh.Enabled = cbbGioiTinh.Enabled = false;
+                btnLuu.Enabled = false;
             }
-            txtCMND.Enabled = txtDiaChi.Enabled = txtSDT.Enabled = txtTenKH.Enabled = dtpNgaySinh.Enabled = cbbGioiTinh.Enabled = false;
-            btnLuu.Enabled = false;
+            
         }
-        //Tim kiem
-        private void btnFind_Click(object sender, EventArgs e)
-        {
-            //DataTable table = new DataTable();
-            //table = _khachHangDAL.LayDL();
-            //DataView dv = new DataView(table);
-            //dv.RowFilter = "[HoTen] Like '%" + txtTimKiem.Text + "%'";
-            List<KhachHang> listkh = _khachHangDAL.GetAll();
-            //dgvKhachHang.DataSource = dv;
-            var listThanhVien = from ltv in listkh
-                                where ltv.HoTen.StartsWith(txtTimKiem.Text)
-                                select ltv;
-            dgvKhachHang.DataSource = listThanhVien;
-           // DataView dataView = (DataView)dgvKhachHang.DataSource;
-           
-        //    if(txtTimKiem.Text == "")
-        //    {
-        //        MessageBox.Show("Bạn cần nhập điều kiện tìm kiếm!");
-        //        return;
-        //    }
-        //    else if(cbbTimKiemTheo.Text == "Mã khách hàng")
-        //    {
-        //        if (IsNumber(txtTimKiem.Text) == true)
-        //        {
-        //            int maKH = int.Parse(txtTimKiem.Text);
-        //            KhachHang kh = _khachHangDAL.GetKhachHangByMaKH(maKH);
-        //            dgvKhachHang.DataSource = kh;
-        //        }
-        //        else
-        //            MessageBox.Show("Ma khach hang khong dung! Vui long nhap lai");
-        //    }
-        //    else
-        //    {
-        //        string tenKH = txtTimKiem.Text;
-        //        List<KhachHang> listkh = _khachHangDAL.GetKhachHangByTenKH(tenKH);
-        //        dgvKhachHang.DataSource = listkh;
-        //    }
-        }
+        
 
         //Reload
         private void btnReLoad_Click(object sender, EventArgs e)
@@ -251,6 +256,7 @@ namespace QLKS
             LoadDataCbbGioiTinh();
             LoadDataCbbTimKiemTheo();
             cbbTimKiemTheo.Text = "Mã khách hàng";
+            btnThem.Enabled = true;
         }
 
         //Ham kiem tra chuoi nhap vao la kieu so hay k
@@ -271,7 +277,7 @@ namespace QLKS
             {
                 if (txtTimKiem.Text.Length == 0)
                 {
-                    //LoadData();
+                    LoadData();
                     return;
                 }
                 else
@@ -279,11 +285,11 @@ namespace QLKS
                     if (IsNumber(txtTimKiem.Text) == true)
                     {
                         int maKH = int.Parse(txtTimKiem.Text);
-                        dgvKhachHang.DataSource = khachHangs.Where(kh => kh.MaKH == maKH).ToList();
+                        dgvKhachHang.DataSource = _khachHangs.Where(kh => kh.MaKH == maKH).ToList();
                     }
                     else
                     {
-                        MessageBox.Show("Điều kiện tìm kiếm không đúng, mã khách hàng phải là kiểu số, vui lòng xem lại!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Điều kiện tìm kiếm không đúng, mã khách hàng phải là kiểu số, vui lòng xem lại!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txtTimKiem.Text = null;
                     }
                 }
@@ -291,7 +297,7 @@ namespace QLKS
             else
             {
                 string tenKH = txtTimKiem.Text;
-                dgvKhachHang.DataSource = khachHangs.Where(kh => kh.HoTen.ToLower().Contains(tenKH.ToLower())
+                dgvKhachHang.DataSource = _khachHangs.Where(kh => kh.HoTen.ToLower().Contains(tenKH.ToLower())
                     || tenKH.ToLower().Contains(kh.HoTen.ToLower())).ToList();
 
             }

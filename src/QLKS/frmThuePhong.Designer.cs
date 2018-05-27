@@ -64,9 +64,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnThanhToan = new System.Windows.Forms.Button();
             this.btnNhanPhong = new System.Windows.Forms.Button();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdbNgay = new System.Windows.Forms.RadioButton();
+            this.rdbGio = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDichVu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTienThuePhong)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvPhong
@@ -124,7 +128,7 @@
             this.dgvDichVu.Location = new System.Drawing.Point(397, 310);
             this.dgvDichVu.Name = "dgvDichVu";
             this.dgvDichVu.ReadOnly = true;
-            this.dgvDichVu.Size = new System.Drawing.Size(474, 150);
+            this.dgvDichVu.Size = new System.Drawing.Size(548, 150);
             this.dgvDichVu.TabIndex = 1;
             this.dgvDichVu.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDichVu_CellClick);
             // 
@@ -245,7 +249,7 @@
             this.dgvTienThuePhong.Location = new System.Drawing.Point(397, 96);
             this.dgvTienThuePhong.Name = "dgvTienThuePhong";
             this.dgvTienThuePhong.ReadOnly = true;
-            this.dgvTienThuePhong.Size = new System.Drawing.Size(474, 150);
+            this.dgvTienThuePhong.Size = new System.Drawing.Size(548, 150);
             this.dgvTienThuePhong.TabIndex = 11;
             // 
             // dataGridViewTextBoxColumn1
@@ -283,9 +287,9 @@
             this.lblTienPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTienPhong.Location = new System.Drawing.Point(515, 464);
             this.lblTienPhong.Name = "lblTienPhong";
-            this.lblTienPhong.Size = new System.Drawing.Size(74, 20);
+            this.lblTienPhong.Size = new System.Drawing.Size(19, 20);
             this.lblTienPhong.TabIndex = 13;
-            this.lblTienPhong.Text = "500,000";
+            this.lblTienPhong.Text = "0";
             // 
             // label7
             // 
@@ -303,9 +307,9 @@
             this.lblTienDichVu.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTienDichVu.Location = new System.Drawing.Point(515, 487);
             this.lblTienDichVu.Name = "lblTienDichVu";
-            this.lblTienDichVu.Size = new System.Drawing.Size(74, 20);
+            this.lblTienDichVu.Size = new System.Drawing.Size(19, 20);
             this.lblTienDichVu.TabIndex = 16;
-            this.lblTienDichVu.Text = "700,000";
+            this.lblTienDichVu.Text = "0";
             // 
             // label9
             // 
@@ -324,9 +328,9 @@
             this.lblTongTienThuePhong.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblTongTienThuePhong.Location = new System.Drawing.Point(515, 513);
             this.lblTongTienThuePhong.Name = "lblTongTienThuePhong";
-            this.lblTongTienThuePhong.Size = new System.Drawing.Size(89, 20);
+            this.lblTongTienThuePhong.Size = new System.Drawing.Size(19, 20);
             this.lblTongTienThuePhong.TabIndex = 18;
-            this.lblTongTienThuePhong.Text = "1,200,000";
+            this.lblTongTienThuePhong.Text = "0";
             // 
             // label11
             // 
@@ -395,7 +399,7 @@
             this.btnThanhToan.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThanhToan.Image = global::QLKS.Properties.Resources.pay;
             this.btnThanhToan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThanhToan.Location = new System.Drawing.Point(745, 466);
+            this.btnThanhToan.Location = new System.Drawing.Point(819, 466);
             this.btnThanhToan.Name = "btnThanhToan";
             this.btnThanhToan.Size = new System.Drawing.Size(126, 63);
             this.btnThanhToan.TabIndex = 14;
@@ -416,11 +420,47 @@
             this.btnNhanPhong.UseVisualStyleBackColor = true;
             this.btnNhanPhong.Click += new System.EventHandler(this.btnNhanPhong_Click);
             // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.rdbNgay);
+            this.groupBox1.Controls.Add(this.rdbGio);
+            this.groupBox1.Location = new System.Drawing.Point(847, 40);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(126, 46);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Tính tiền phòng theo";
+            // 
+            // rdbNgay
+            // 
+            this.rdbNgay.AutoSize = true;
+            this.rdbNgay.Location = new System.Drawing.Point(66, 19);
+            this.rdbNgay.Name = "rdbNgay";
+            this.rdbNgay.Size = new System.Drawing.Size(50, 17);
+            this.rdbNgay.TabIndex = 1;
+            this.rdbNgay.TabStop = true;
+            this.rdbNgay.Text = "Ngày";
+            this.rdbNgay.UseVisualStyleBackColor = true;
+            this.rdbNgay.Click += new System.EventHandler(this.rdbNgay_Click);
+            // 
+            // rdbGio
+            // 
+            this.rdbGio.AutoSize = true;
+            this.rdbGio.Location = new System.Drawing.Point(10, 19);
+            this.rdbGio.Name = "rdbGio";
+            this.rdbGio.Size = new System.Drawing.Size(41, 17);
+            this.rdbGio.TabIndex = 0;
+            this.rdbGio.TabStop = true;
+            this.rdbGio.Text = "Giờ";
+            this.rdbGio.UseVisualStyleBackColor = true;
+            this.rdbGio.Click += new System.EventHandler(this.rdbGio_Click);
+            // 
             // frmThuePhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(883, 548);
+            this.ClientSize = new System.Drawing.Size(957, 548);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtSoLuongDV);
             this.Controls.Add(this.lblSoLuong);
@@ -452,6 +492,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDichVu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTienThuePhong)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -495,5 +537,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdbNgay;
+        private System.Windows.Forms.RadioButton rdbGio;
     }
 }

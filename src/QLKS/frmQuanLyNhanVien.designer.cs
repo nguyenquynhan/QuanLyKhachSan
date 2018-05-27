@@ -310,6 +310,8 @@
             // 
             // dgvNhanVien
             // 
+            this.dgvNhanVien.AllowUserToAddRows = false;
+            this.dgvNhanVien.AllowUserToDeleteRows = false;
             this.dgvNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvNhanVien.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaNV,
@@ -324,6 +326,7 @@
             this.dgvNhanVien.Location = new System.Drawing.Point(7, 331);
             this.dgvNhanVien.MultiSelect = false;
             this.dgvNhanVien.Name = "dgvNhanVien";
+            this.dgvNhanVien.ReadOnly = true;
             this.dgvNhanVien.Size = new System.Drawing.Size(993, 292);
             this.dgvNhanVien.TabIndex = 4;
             this.dgvNhanVien.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNhanVien_CellClick);
@@ -333,30 +336,35 @@
             this.MaNV.DataPropertyName = "MaNV";
             this.MaNV.HeaderText = "Mã NV";
             this.MaNV.Name = "MaNV";
+            this.MaNV.ReadOnly = true;
             // 
             // HoTen
             // 
             this.HoTen.DataPropertyName = "HoTen";
             this.HoTen.HeaderText = "Họ tên";
             this.HoTen.Name = "HoTen";
+            this.HoTen.ReadOnly = true;
             // 
             // NgaySinh
             // 
             this.NgaySinh.DataPropertyName = "NgaySinh";
             this.NgaySinh.HeaderText = "Ngày sinh";
             this.NgaySinh.Name = "NgaySinh";
+            this.NgaySinh.ReadOnly = true;
             // 
             // GioiTinh
             // 
             this.GioiTinh.DataPropertyName = "GioiTinh";
             this.GioiTinh.HeaderText = "Giới tính";
             this.GioiTinh.Name = "GioiTinh";
+            this.GioiTinh.ReadOnly = true;
             // 
             // DiaChi
             // 
             this.DiaChi.DataPropertyName = "DiaChi";
             this.DiaChi.HeaderText = "Địa chỉ";
             this.DiaChi.Name = "DiaChi";
+            this.DiaChi.ReadOnly = true;
             this.DiaChi.Width = 150;
             // 
             // SDT
@@ -364,24 +372,28 @@
             this.SDT.DataPropertyName = "SDT";
             this.SDT.HeaderText = "SDT";
             this.SDT.Name = "SDT";
+            this.SDT.ReadOnly = true;
             // 
             // Email
             // 
             this.Email.DataPropertyName = "Email";
             this.Email.HeaderText = "Email";
             this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
             // 
             // CMND
             // 
             this.CMND.DataPropertyName = "CMND";
             this.CMND.HeaderText = "CMND";
             this.CMND.Name = "CMND";
+            this.CMND.ReadOnly = true;
             // 
             // NgayLamViec
             // 
             this.NgayLamViec.DataPropertyName = "NgayLamViec";
             this.NgayLamViec.HeaderText = "Ngày làm việc";
             this.NgayLamViec.Name = "NgayLamViec";
+            this.NgayLamViec.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -419,7 +431,8 @@
             this.groupBox1.Size = new System.Drawing.Size(993, 264);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-           
+       
+            // 
             // label13
             // 
             this.label13.AutoSize = true;

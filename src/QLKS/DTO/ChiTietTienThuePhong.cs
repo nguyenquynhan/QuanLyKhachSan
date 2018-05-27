@@ -16,7 +16,7 @@ namespace QLKS.DTO
 
         public double? Gia { get; set; }
 
-        public int SoLuong { get; set; }
+        public double SoLuong { get; set; }
 
         public double? ThanhTien { get; set; }
 

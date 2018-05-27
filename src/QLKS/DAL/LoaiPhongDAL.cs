@@ -84,7 +84,7 @@ namespace QLKS.DAL
         //Create loai phong
         public bool Create(LoaiPhong lph)
         {
-            string sql = "Insert into LoaiPhong (TenLoaiPH, GiaGioDau, GiaGioHai, GiaGioTiepTheo, GiaTheoNgay, NgayTao, NguoiTao) values (@TenLoaiPH, @GiaGioDau, @GiaGioHai, @GiaGioTiepTheo, @GiaTheoNgay, @NgayTao, @NguoiTao)";
+            string sql = "Insert into LoaiPhong (TenLoaiPH, GiaGioDau, GiaGioHai, GiaGioTiepTheo, GiaTheoNgay, NgayTao, NguoiTao, DaXoa) values (@TenLoaiPH, @GiaGioDau, @GiaGioHai, @GiaGioTiepTheo, @GiaTheoNgay, @NgayTao, @NguoiTao, @DaXoa)";
             SqlParameter[] pr = {
                               
                                 new SqlParameter("@TenLoaiPH",lph.TenLoaiPH ),
@@ -93,7 +93,8 @@ namespace QLKS.DAL
                                 new SqlParameter("@GiaGioTiepTheo",lph.GiaGioTiepTheo),
                                 new SqlParameter("@GiaTheoNgay",lph.GiaTheoNgay),
                                 new SqlParameter("@NgayTao", lph.NgayTao ),
-                                new SqlParameter("@NguoiTao", lph.NguoiTao)
+                                new SqlParameter("@NguoiTao", lph.NguoiTao),
+                                new SqlParameter("@DaXoa", lph.DaXoa)
                               };
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }

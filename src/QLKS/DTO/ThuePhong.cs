@@ -14,6 +14,8 @@ namespace QLKS.DTO
 
         public int MaPH { get; set; }
 
+        public bool IsNgay { get; set; }
+
         public DateTime? NgayNhanPH { get; set; }
 
         public DateTime? NgayTraPH { get; set; }

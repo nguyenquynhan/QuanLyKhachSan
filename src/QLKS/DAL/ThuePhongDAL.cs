@@ -20,15 +20,16 @@ namespace QLKS.DAL
         public ThuePhong Create(ThuePhong TP)
         {
 
-            string sql = "INSERT INTO ThuePhong(MaKH, MaPH, NgayNhanPH, SoLuongNguoi, NguoiTao) output INSERTED.MaTP VALUES(@MaKH, @MaPH, @NgayNhanPH, @SoLuongNguoi, @NguoiTao)";
+            string sql = "INSERT INTO ThuePhong(MaKH, MaPH, NgayNhanPH, SoLuongNguoi, NguoiTao, NgayTao) output INSERTED.MaTP VALUES(@MaKH, @MaPH, @NgayNhanPH, @SoLuongNguoi, @NguoiTao, @NgayTao)";
             SqlParameter[] pr ={
                               new SqlParameter("@MaKH",TP.MaKH),
                               new SqlParameter("@MaPH",TP.MaPH),
                               new SqlParameter("@NgayNhanPH", TP.NgayNhanPH),
                               new SqlParameter("@SoLuongNguoi",TP.SoLuongNguoi),
                               new SqlParameter("@NguoiTao",TP.NguoiTao),
+                              new SqlParameter("@NgayTao",TP.NgayTao)
                               };
-            var maTP = _helper.ExecuteScalar(sql, pr, CommandType.Text);//excutenonquery thực thi , trả về true or false( thêm xóa xửa)
+            var maTP =  _helper.ExecuteScalar(sql, pr, CommandType.Text);
 
             if (maTP != null)
             {
@@ -96,6 +97,27 @@ namespace QLKS.DAL
             SqlParameter[] pr ={
                                new SqlParameter ("@MaPH", MaPH)
                                };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
+
+        //Update IsNgay = 1
+        public bool UpdateIsNgay1(ThuePhong TP)
+        {
+            SqlParameter[] pr = new SqlParameter[] { };
+            string sql = "UPDATE ThuePhong SET IsNgay = 1 Where MaTP = @MaTP";
+            pr = new SqlParameter[] {
+                    new SqlParameter("@MaTP",TP.MaTP),
+            };
+            return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+        }
+        //Update IsNgay = 0
+        public bool UpdateIsNgay0(ThuePhong TP)
+        {
+            SqlParameter[] pr = new SqlParameter[] { };
+            string sql = "UPDATE ThuePhong SET IsNgay = 0 Where MaTP = @MaTP";
+            pr = new SqlParameter[] {
+                    new SqlParameter("@MaTP",TP.MaTP),
+            };
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }
     }

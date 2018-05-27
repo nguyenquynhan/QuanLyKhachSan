@@ -39,15 +39,15 @@ namespace QLKS.DAL
                               };
              return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);//excutenonquery thực thi , trả về true or false( thêm xóa xửa)
          }
-         public bool Update(ChiTietDichVuThuePhong CTDVTP)
+
+        //Update dịch vụ khi thêm dịch vụ đã tồn tại trước đó
+         public bool UpdateDV(ChiTietDichVuThuePhong CTDVTP)
          {
-             string sql = "Update ChiTietDichVuThuePhong set (SoLuong = SoLuong + @SoLuong, ThanhTien = ThanhTien + @ThanhTien, NgaySua, NguoiSua";
+             string sql = "Update ChiTietDichVuThuePhong set SoLuong = SoLuong + @SoLuong, ThanhTien = ThanhTien + @ThanhTien where MaTP = @MaTP";
              SqlParameter[] pr ={
-                            
+                              new SqlParameter("@MaTP", CTDVTP.MaTP),
                               new SqlParameter("@SoLuong", CTDVTP.SoLuong),
                               new SqlParameter("@ThanhTien", CTDVTP.ThanhTien),
-                              new SqlParameter("@NgaySua", CTDVTP.NgaySua),
-                              new SqlParameter("@NguoiSua", CTDVTP.NguoiSua)
                               };
              return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);//excutenonquery thực thi , trả về true or false( thêm xóa xửa)
          }
@@ -78,6 +78,17 @@ namespace QLKS.DAL
                                new SqlParameter ("@MaTP", MaTP)
                                };
              return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
+         }
+
+        //Lay danh sach chi tiet dich vu thue phong theo ma thue phong
+        public List<ChiTietDichVuThuePhong> GetChiTietDVTPByMaTP(int MaTP)
+         {
+             List<ChiTietDichVuThuePhong> listChiTietDVTP = new List<ChiTietDichVuThuePhong>();
+             string sql = "SELECT * FROM ChiTietDichVuThuePhong WHERE MaTP= @MaTP";
+             SqlParameter[] pr = {new SqlParameter ("@MaTP",MaTP)};
+             SqlDataReader dr = _helper.ExcuteDataReader(sql, pr, CommandType.Text);
+             listChiTietDVTP = _helper.MapReaderToList<ChiTietDichVuThuePhong>(dr);
+             return listChiTietDVTP;
          }
     }
 }

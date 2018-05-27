@@ -74,7 +74,7 @@ namespace QLKS.DAL
         public bool UpdateForQLPhong(Phong PH)
         {
             SqlParameter[] pr = new SqlParameter[] { };
-            string sql = "UPDATE Phong SET DaXoa = 0, MaLoaiPH = @MaLoaiPH, NgaySua=@NgaySua, NguoiSua=@NguoiSua Where MaPH = @MaPH";
+            string sql = "UPDATE Phong SET DaXoa = 0, MaLoaiPH = @MaLoaiPH, NgaySua=@NgaySua, NguoiSua=@NguoiSua Where MaPH = @MaPH and DaXoa = 1";
             pr = new SqlParameter[] {
                     new SqlParameter("@MaPH",PH.MaPH),
                     new SqlParameter("@MaLoaiPH",PH.MaLoaiPH ),
@@ -106,12 +106,13 @@ namespace QLKS.DAL
 
         public bool Create(Phong ph)
         {
-            string sql = "Insert into Phong (MaPH, MaLoaiPH, NgayTao, NguoiTao) values (@MaPH, @MaLoaiPH, @NgayTao, @NguoiTao)";
+            string sql = "Insert into Phong (MaPH, MaLoaiPH, NgayTao, NguoiTao, DaXoa) values (@MaPH, @MaLoaiPH, @NgayTao, @NguoiTao, @DaXoa)";
             SqlParameter[] pr = {
-                                 new SqlParameter("@MaPH",ph.MaPH ),
+                                new SqlParameter("@MaPH",ph.MaPH ),
                                 new SqlParameter("@MaLoaiPH",ph.MaLoaiPH ),
                                 new SqlParameter("@NgayTao", ph.NgayTao ),
-                                new SqlParameter("@NguoiTao", ph.NguoiTao)
+                                new SqlParameter("@NguoiTao", ph.NguoiTao),
+                                new SqlParameter("@DaXoa", ph.DaXoa)
                               };
             return _helper.ExcuteNonQuery(sql, pr, CommandType.Text);
         }

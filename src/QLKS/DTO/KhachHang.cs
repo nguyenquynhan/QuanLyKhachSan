@@ -30,6 +30,8 @@ namespace QLKS.DTO
 
         public int NguoiSua { get; set; }
 
+        public bool DaXoa { get; set; }
+
     }
 
 }

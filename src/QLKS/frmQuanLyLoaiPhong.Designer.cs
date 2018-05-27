@@ -234,6 +234,8 @@
             // 
             // dgvLoaiPhong
             // 
+            this.dgvLoaiPhong.AllowUserToAddRows = false;
+            this.dgvLoaiPhong.AllowUserToDeleteRows = false;
             this.dgvLoaiPhong.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLoaiPhong.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.MaLoaiPH,
@@ -244,6 +246,7 @@
             this.GiaTheoNgay});
             this.dgvLoaiPhong.Location = new System.Drawing.Point(16, 185);
             this.dgvLoaiPhong.Name = "dgvLoaiPhong";
+            this.dgvLoaiPhong.ReadOnly = true;
             this.dgvLoaiPhong.Size = new System.Drawing.Size(652, 150);
             this.dgvLoaiPhong.TabIndex = 0;
             this.dgvLoaiPhong.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvLoaiPhong_CellClick);
@@ -253,36 +256,42 @@
             this.MaLoaiPH.DataPropertyName = "MaLoaiPH";
             this.MaLoaiPH.HeaderText = "Mã Loại Phòng";
             this.MaLoaiPH.Name = "MaLoaiPH";
+            this.MaLoaiPH.ReadOnly = true;
             // 
             // TenLoaiPH
             // 
             this.TenLoaiPH.DataPropertyName = "TenLoaiPH";
             this.TenLoaiPH.HeaderText = "Tên  loại phòng";
             this.TenLoaiPH.Name = "TenLoaiPH";
+            this.TenLoaiPH.ReadOnly = true;
             // 
             // GiaGioDau
             // 
             this.GiaGioDau.DataPropertyName = "GiaGioDau";
             this.GiaGioDau.HeaderText = "Giá giờ đầu";
             this.GiaGioDau.Name = "GiaGioDau";
+            this.GiaGioDau.ReadOnly = true;
             // 
             // GiaGioHai
             // 
             this.GiaGioHai.DataPropertyName = "GiaGioHai";
             this.GiaGioHai.HeaderText = "Giá giờ hai";
             this.GiaGioHai.Name = "GiaGioHai";
+            this.GiaGioHai.ReadOnly = true;
             // 
             // GiaGioTiepTheo
             // 
             this.GiaGioTiepTheo.DataPropertyName = "GiaGioTiepTheo";
             this.GiaGioTiepTheo.HeaderText = "Giá giờ tiếp theo";
             this.GiaGioTiepTheo.Name = "GiaGioTiepTheo";
+            this.GiaGioTiepTheo.ReadOnly = true;
             // 
             // GiaTheoNgay
             // 
             this.GiaTheoNgay.DataPropertyName = "GiaTheoNgay";
             this.GiaTheoNgay.HeaderText = "Giá Theo Ngày";
             this.GiaTheoNgay.Name = "GiaTheoNgay";
+            this.GiaTheoNgay.ReadOnly = true;
             // 
             // frmQuanLyLoaiPhong
             // 
@@ -309,7 +318,7 @@
             this.Controls.Add(this.txtMaLoaiPH);
             this.Controls.Add(this.dgvLoaiPhong);
             this.Name = "frmQuanLyLoaiPhong";
-            this.Text = "frmQuanLyLoaiPhong";
+            this.Text = "Quản lý loại phòng";
             this.Load += new System.EventHandler(this.frmQuanLyLoaiPhong_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvLoaiPhong)).EndInit();
             this.ResumeLayout(false);
