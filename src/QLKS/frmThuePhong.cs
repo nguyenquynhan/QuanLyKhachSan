@@ -410,7 +410,10 @@ namespace QLKS
         {
             Phong selected = (Phong)dgvPhong.CurrentRow.DataBoundItem;
             if (selected.DangThue == true)
+            { 
                 LoadDataDgvTienPhong();
+                TinhTongTien();
+            }
             else
                 return;
         }
@@ -419,7 +422,10 @@ namespace QLKS
         {
             Phong selected = (Phong)dgvPhong.CurrentRow.DataBoundItem;
             if (selected.DangThue == true)
+            {
                 LoadDataDgvTienPhong();
+                TinhTongTien();
+            }
             else
                 return;
         }
