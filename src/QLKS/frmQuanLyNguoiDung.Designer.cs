@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.dgvNguoiDung = new System.Windows.Forms.DataGridView();
+            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsAdmin = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.PassWord = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
             this.cbbNhanVien = new System.Windows.Forms.ComboBox();
@@ -40,11 +45,9 @@
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnThemMoi = new System.Windows.Forms.Button();
             this.btnLuu = new System.Windows.Forms.Button();
-            this.HoTen = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IsAdmin = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.PassWord = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Username = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnReLoad = new System.Windows.Forms.Button();
+            this.btnSua = new System.Windows.Forms.Button();
+            this.lblCheck = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNguoiDung)).BeginInit();
             this.SuspendLayout();
             // 
@@ -68,6 +71,44 @@
             this.dgvNguoiDung.Size = new System.Drawing.Size(894, 342);
             this.dgvNguoiDung.TabIndex = 0;
             this.dgvNguoiDung.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvNguoiDung_CellClick);
+            // 
+            // HoTen
+            // 
+            this.HoTen.DataPropertyName = "HoTen";
+            this.HoTen.HeaderText = "Họ Tên";
+            this.HoTen.Name = "HoTen";
+            this.HoTen.ReadOnly = true;
+            this.HoTen.Width = 200;
+            // 
+            // IsAdmin
+            // 
+            this.IsAdmin.DataPropertyName = "IsAdmin";
+            this.IsAdmin.HeaderText = "Là quản lý";
+            this.IsAdmin.Name = "IsAdmin";
+            this.IsAdmin.ReadOnly = true;
+            // 
+            // PassWord
+            // 
+            this.PassWord.DataPropertyName = "Password";
+            this.PassWord.HeaderText = "Mật khẩu";
+            this.PassWord.Name = "PassWord";
+            this.PassWord.ReadOnly = true;
+            this.PassWord.Width = 150;
+            // 
+            // Username
+            // 
+            this.Username.DataPropertyName = "Username";
+            this.Username.HeaderText = "Tên đăng nhập";
+            this.Username.Name = "Username";
+            this.Username.ReadOnly = true;
+            // 
+            // NgayTao
+            // 
+            this.NgayTao.DataPropertyName = "NgayTao";
+            this.NgayTao.HeaderText = "Ngày tạo";
+            this.NgayTao.Name = "NgayTao";
+            this.NgayTao.ReadOnly = true;
+            this.NgayTao.Width = 150;
             // 
             // label1
             // 
@@ -144,7 +185,7 @@
             this.btnXoa.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnXoa.Image = global::QLKS.Properties.Resources.Delete;
             this.btnXoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXoa.Location = new System.Drawing.Point(216, 61);
+            this.btnXoa.Location = new System.Drawing.Point(203, 63);
             this.btnXoa.Name = "btnXoa";
             this.btnXoa.Size = new System.Drawing.Size(74, 39);
             this.btnXoa.TabIndex = 12;
@@ -158,7 +199,7 @@
             this.btnThemMoi.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnThemMoi.Image = global::QLKS.Properties.Resources.save__2_;
             this.btnThemMoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThemMoi.Location = new System.Drawing.Point(113, 61);
+            this.btnThemMoi.Location = new System.Drawing.Point(15, 64);
             this.btnThemMoi.Name = "btnThemMoi";
             this.btnThemMoi.Size = new System.Drawing.Size(74, 39);
             this.btnThemMoi.TabIndex = 10;
@@ -172,7 +213,7 @@
             this.btnLuu.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLuu.Image = global::QLKS.Properties.Resources.save;
             this.btnLuu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLuu.Location = new System.Drawing.Point(15, 61);
+            this.btnLuu.Location = new System.Drawing.Point(299, 63);
             this.btnLuu.Name = "btnLuu";
             this.btnLuu.Size = new System.Drawing.Size(74, 39);
             this.btnLuu.TabIndex = 9;
@@ -181,49 +222,52 @@
             this.btnLuu.UseVisualStyleBackColor = true;
             this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
             // 
-            // HoTen
+            // btnReLoad
             // 
-            this.HoTen.DataPropertyName = "HoTen";
-            this.HoTen.HeaderText = "Họ Tên";
-            this.HoTen.Name = "HoTen";
-            this.HoTen.ReadOnly = true;
-            this.HoTen.Width = 200;
+            this.btnReLoad.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnReLoad.Image = global::QLKS.Properties.Resources.reload;
+            this.btnReLoad.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReLoad.Location = new System.Drawing.Point(393, 63);
+            this.btnReLoad.Name = "btnReLoad";
+            this.btnReLoad.Size = new System.Drawing.Size(91, 40);
+            this.btnReLoad.TabIndex = 33;
+            this.btnReLoad.Text = "Reload";
+            this.btnReLoad.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnReLoad.UseVisualStyleBackColor = true;
+            this.btnReLoad.Click += new System.EventHandler(this.btnReLoad_Click);
             // 
-            // IsAdmin
+            // btnSua
             // 
-            this.IsAdmin.DataPropertyName = "IsAdmin";
-            this.IsAdmin.HeaderText = "Là quản lý";
-            this.IsAdmin.Name = "IsAdmin";
-            this.IsAdmin.ReadOnly = true;
+            this.btnSua.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.btnSua.Image = global::QLKS.Properties.Resources.save__2_;
+            this.btnSua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSua.Location = new System.Drawing.Point(109, 63);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(74, 39);
+            this.btnSua.TabIndex = 32;
+            this.btnSua.Text = "Sửa";
+            this.btnSua.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSua.UseVisualStyleBackColor = true;
+            this.btnSua.Click += new System.EventHandler(this.btnSua_Click);
             // 
-            // PassWord
+            // lblCheck
             // 
-            this.PassWord.DataPropertyName = "Password";
-            this.PassWord.HeaderText = "Mật khẩu";
-            this.PassWord.Name = "PassWord";
-            this.PassWord.ReadOnly = true;
-            this.PassWord.Width = 150;
-            // 
-            // Username
-            // 
-            this.Username.DataPropertyName = "Username";
-            this.Username.HeaderText = "Tên đăng nhập";
-            this.Username.Name = "Username";
-            this.Username.ReadOnly = true;
-            // 
-            // NgayTao
-            // 
-            this.NgayTao.DataPropertyName = "NgayTao";
-            this.NgayTao.HeaderText = "Ngày tạo";
-            this.NgayTao.Name = "NgayTao";
-            this.NgayTao.ReadOnly = true;
-            this.NgayTao.Width = 150;
+            this.lblCheck.AutoSize = true;
+            this.lblCheck.Location = new System.Drawing.Point(57, 106);
+            this.lblCheck.Name = "lblCheck";
+            this.lblCheck.Size = new System.Drawing.Size(77, 13);
+            this.lblCheck.TabIndex = 34;
+            this.lblCheck.Text = "them hoac sua";
+            this.lblCheck.Visible = false;
             // 
             // frmQuanLyNguoiDung
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(921, 475);
+            this.Controls.Add(this.lblCheck);
+            this.Controls.Add(this.btnReLoad);
+            this.Controls.Add(this.btnSua);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.lblMaND);
             this.Controls.Add(this.btnThemMoi);
@@ -264,6 +308,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PassWord;
         private System.Windows.Forms.DataGridViewTextBoxColumn Username;
         private System.Windows.Forms.DataGridViewTextBoxColumn NgayTao;
+        private System.Windows.Forms.Button btnReLoad;
+        private System.Windows.Forms.Button btnSua;
+        private System.Windows.Forms.Label lblCheck;
     }
 }
 

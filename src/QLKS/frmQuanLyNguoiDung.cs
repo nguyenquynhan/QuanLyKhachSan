@@ -26,15 +26,16 @@ namespace QLKS
         private void frmQuanLyNguoiDung_Load(object sender, EventArgs e)
         {
             LoadNhanVien();
-            LoadData();
             ThemMoi();
+            LoadData();
         }
 
         private void LoadData()
         {
             List<NguoiDung> nguoiDungs = _nguoiDungDAL.GetAllExisting();
             dgvNguoiDung.DataSource = nguoiDungs;
-            
+            btnLuu.Enabled = btnSua.Enabled = btnXoa.Enabled = false;
+            cbbNhanVien.Enabled = txtUserName.Enabled = txtPassword.Enabled = false;
         }
 
         private void LoadNhanVien()
@@ -58,12 +59,16 @@ namespace QLKS
                 txtPassword.Text = selected.Password;
                 lblMaND.Text = selected.MaND.ToString();
                // txtPassword.Text = string.Empty;
+                btnThemMoi.Enabled = btnSua.Enabled = btnXoa.Enabled = true;
+                cbbNhanVien.Enabled = txtPassword.Enabled = txtUserName.Enabled = btnLuu.Enabled = false;
             }
             btnXoa.Enabled = true;
         }
 
         private void btnThemMoi_Click(object sender, EventArgs e)
         {
+            lblCheck.Text = "t";
+            btnLuu.Enabled = true;
             ThemMoi();
         }
 
@@ -132,12 +137,13 @@ namespace QLKS
 
         private void ThemMoi()
         {
+            cbbNhanVien.Enabled = txtUserName.Enabled = txtPassword.Enabled = true;
             cbbNhanVien.SelectedValue = 0;
             txtUserName.Text = string.Empty;
             txtPassword.Text = string.Empty;
             cheIsAdmin.Checked = false;
             lblMaND.Text = string.Empty;
-            btnXoa.Enabled = false;
+            btnXoa.Enabled = btnSua.Enabled = false;
         }
 
         private void btnXoa_Click(object sender, EventArgs e)
@@ -168,5 +174,22 @@ namespace QLKS
                 }
                 btnLuu.Enabled = true; 
         }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            lblCheck.Text = "s";
+            btnThemMoi.Enabled = btnXoa.Enabled = false;
+            btnLuu.Enabled = true;
+            cbbNhanVien.Enabled = false;
+            txtPassword.Enabled = txtUserName.Enabled = true;
+        }
+
+        private void btnReLoad_Click(object sender, EventArgs e)
+        {
+            ThemMoi();
+            LoadData();
+            btnThemMoi.Enabled = true;
+        }
     }
 }
+

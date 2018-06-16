@@ -49,7 +49,6 @@
             this.btnLuu = new System.Windows.Forms.Button();
             this.btnXoa = new System.Windows.Forms.Button();
             this.btnReload = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
             this.cbbGioiTinh = new System.Windows.Forms.ComboBox();
             this.dgvNhanVien = new System.Windows.Forms.DataGridView();
             this.MaNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -287,17 +286,6 @@
             this.btnReload.UseVisualStyleBackColor = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(492, 208);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(90, 40);
-            this.button6.TabIndex = 2;
-            this.button6.Text = "Print";
-            this.button6.UseVisualStyleBackColor = false;
-            // 
             // cbbGioiTinh
             // 
             this.cbbGioiTinh.BackColor = System.Drawing.SystemColors.Info;
@@ -415,7 +403,6 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.dtpNgaySinh);
-            this.groupBox1.Controls.Add(this.button6);
             this.groupBox1.Controls.Add(this.dtpNgayLamViec);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.btnReload);
@@ -431,7 +418,6 @@
             this.groupBox1.Size = new System.Drawing.Size(993, 264);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
-       
             // 
             // label13
             // 
@@ -528,7 +514,6 @@
         private System.Windows.Forms.Button btnLuu;
         private System.Windows.Forms.Button btnXoa;
         private System.Windows.Forms.Button btnReload;
-        private System.Windows.Forms.Button button6;
         private System.Windows.Forms.ComboBox cbbGioiTinh;
         private System.Windows.Forms.DataGridView dgvNhanVien;
         private System.Windows.Forms.GroupBox groupBox1;
