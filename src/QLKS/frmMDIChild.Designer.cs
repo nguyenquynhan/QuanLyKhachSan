@@ -40,7 +40,6 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Activated += new System.EventHandler(this.MDIChild_Activated);
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MDIChild_FormClosing);
-          
             this.ResumeLayout(false);
 
         }
